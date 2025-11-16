@@ -18,11 +18,5 @@ sessions/session_1
 
 ---
 
-Generar la documentación localmente:
-
-```bash
-# build HTML
-uv run sphinx-build -b html docs _build/html
-# Live reload durante edición (requiere sphinx-autobuild)
-uv run sphinx-autobuild docs _build/html
-```
+El objetivo de este módulo es proporcionar una introducción práctica al análisis de datos utilizando Python y sus librerías más populares, como NumPy, pandas, Matplotlib y Seaborn. A lo largo de las sesiones, aprenderás a manipular, analizar y visualizar datos de manera efectiva.
+Cada sesión incluye teoría, ejemplos de código y ejercicios guiados para consolidar los conocimientos adquiridos. Al finalizar el módulo, estarás preparado/a para abordar proyectos de análisis de datos utilizando Python.

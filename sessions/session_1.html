@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión 1 — Introducción al Análisis de Datos con Python &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="SIQ025/SIQ525 — Software para el Análisis de Datos con Python" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SIQ025 — Programari Professional d'Anàlisi de Dades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sesión 1 — Introducción al Análisis de Datos con Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduccion">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-y-estructura-de-proyecto">Software y estructura de proyecto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conceptos-basicos-de-python">Conceptos básicos de Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tipos-de-datos">Tipos de datos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operadores">Operadores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estructuras-de-datos">Estructuras de datos</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#introduccion-a-numpy-y-pandas">Introducción a NumPy y pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejercicio-guiado">Ejercicio guiado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusiones-de-la-sesion">Conclusiones de la sesión</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SIQ025 — Programari Professional d'Anàlisi de Dades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sesión 1 — Introducción al Análisis de Datos con Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sessions/session_1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sesion-1-introduccion-al-analisis-de-datos-con-python">
+<h1>Sesión 1 — Introducción al Análisis de Datos con Python<a class="headerlink" href="#sesion-1-introduccion-al-analisis-de-datos-con-python" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading"></a></h2>
+<p>El análisis de datos se ha convertido en una habilidad esencial en múltiples disciplinas, desde la investigación científica hasta la toma de decisiones empresariales. La capacidad de recolectar, limpiar, explorar, modelar y comunicar datos de manera efectiva permite extraer información valiosa que de otro modo permanecería oculta en grandes volúmenes de información. En esta asignatura aprenderemos a usar herramientas profesionales para realizar análisis de datos de manera rigurosa y reproducible.</p>
+<p>Python es uno de los lenguajes más usados en el análisis de datos. Es muy versátil y su ecosistema de librerías científicas permite realizar desde la manipulación básica de datos hasta modelos avanzados de machine learning.</p>
+<p>En esta primera sesión nos centraremos en Python y en el entorno Jupyter Notebook, que será la herramienta principal de todo el curso. Aprenderemos los conceptos básicos del lenguaje, la manipulación de estructuras de datos y los primeros pasos en pandas y NumPy, fundamentales para cualquier análisis posterior.</p>
+</section>
+<hr class="docutils" />
+<section id="software-y-estructura-de-proyecto">
+<h2>Software y estructura de proyecto<a class="headerlink" href="#software-y-estructura-de-proyecto" title="Link to this heading"></a></h2>
+<p><strong>Jupyter Notebook</strong> es un entorno interactivo que permite combinar código, resultados, gráficos y texto explicativo en un único documento. Esto facilita la comprensión del análisis paso a paso y permite documentar todo el proceso de manera clara y reproducible.</p>
+<p><strong>Google Colab</strong> es una plataforma en línea que permite ejecutar Jupyter Notebooks sin necesidad de instalar nada localmente, facilitando el acceso y la colaboración.</p>
+<p>Una buena práctica profesional es mantener una <strong>estructura de proyecto organizada</strong>, de manera que los datos, scripts, notebooks y resultados estén claramente separados. Una estructura recomendada podría ser:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data/       → datasets utilizados en el análisis
+notebooks/  → cuadernos Jupyter donde se desarrolla el análisis
+src/        → scripts de Python para funciones o cálculos repetitivos
+results/    → gráficos, tablas y reportes exportados
+README.md   → descripción general del proyecto y documentación
+</pre></div>
+</div>
+<p>Mantener esta estructura desde el inicio es clave para garantizar la reproducibilidad y la claridad del proyecto.</p>
+</section>
+<hr class="docutils" />
+<section id="conceptos-basicos-de-python">
+<h2>Conceptos básicos de Python<a class="headerlink" href="#conceptos-basicos-de-python" title="Link to this heading"></a></h2>
+<p>Antes de empezar a manipular datos, es importante conocer los tipos de datos fundamentales y cómo interactuar con ellos.</p>
+<section id="tipos-de-datos">
+<h3>Tipos de datos<a class="headerlink" href="#tipos-de-datos" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>int</strong>: números enteros.</p></li>
+<li><p><strong>float</strong>: números decimales.</p></li>
+<li><p><strong>str</strong>: cadenas de texto.</p></li>
+<li><p><strong>bool</strong>: valores lógicos <code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>        <span class="c1"># número entero</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14</span>    <span class="c1"># número decimal</span>
+<span class="n">nombre</span> <span class="o">=</span> <span class="s2">&quot;Ana&quot;</span> <span class="c1"># cadena de texto</span>
+<span class="n">activo</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># valor booleano</span>
+</pre></div>
+</div>
+<p>Estos tipos de datos se usan para almacenar información y realizar operaciones básicas, y constituyen la base para trabajar con estructuras más complejas.</p>
+</section>
+<section id="operadores">
+<h3>Operadores<a class="headerlink" href="#operadores" title="Link to this heading"></a></h3>
+<p>Python permite realizar operaciones aritméticas, comparaciones y combinaciones lógicas:</p>
+<ul class="simple">
+<li><p><strong>Aritméticos</strong>: <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">-</span> <span class="pre">*</span> <span class="pre">/</span> <span class="pre">**</span> <span class="pre">%</span></code> (suma, resta, multiplicación, división, potencia y módulo).</p></li>
+<li><p><strong>Comparación</strong>: <code class="docutils literal notranslate"><span class="pre">==</span> <span class="pre">!=</span> <span class="pre">&gt;</span> <span class="pre">&lt;</span> <span class="pre">&gt;=</span> <span class="pre">&lt;=</span></code> (igual, diferente, mayor, menor, mayor o igual, menor o igual).</p></li>
+<li><p><strong>Lógicos</strong>: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code class="docutils literal notranslate"><span class="pre">not</span></code> para combinar condiciones booleanas.</p></li>
+</ul>
+</section>
+<section id="estructuras-de-datos">
+<h3>Estructuras de datos<a class="headerlink" href="#estructuras-de-datos" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Listas</strong>: colecciones ordenadas y modificables.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">numeros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># añadir un elemento</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Diccionarios</strong>: colecciones de pares clave-valor.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">persona</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">])</span>  <span class="c1"># acceder al valor de la clave &#39;nombre&#39;</span>
+</pre></div>
+</div>
+<p>Estas estructuras permiten almacenar y organizar datos antes de pasarlos a librerías como pandas para su análisis.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="introduccion-a-numpy-y-pandas">
+<h2>Introducción a NumPy y pandas<a class="headerlink" href="#introduccion-a-numpy-y-pandas" title="Link to this heading"></a></h2>
+<p><strong>NumPy</strong> es una librería especializada en cálculos numéricos eficientes sobre arrays y matrices. Facilita operaciones matemáticas complejas de manera rápida y sencilla.</p>
+<p><strong>pandas</strong> permite manipular datos tabulares mediante <strong>DataFrames</strong>, estructuras similares a hojas de cálculo pero mucho más flexibles y potentes. Nos permite filtrar, seleccionar, agregar y transformar datos de manera profesional.</p>
+<p>Ejemplo básico:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Lista de números y cálculo de media</span>
+<span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">media</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Media:&quot;</span><span class="p">,</span> <span class="n">media</span><span class="p">)</span>
+
+<span class="c1"># Crear un DataFrame simple</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Nombre&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;Marta&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Nota&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nota media:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Nota&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Con este ejemplo los alumnos comienzan a ver cómo Python y pandas permiten calcular métricas básicas y organizar la información de manera eficiente.</p>
+</section>
+<hr class="docutils" />
+<section id="ejercicio-guiado">
+<h2>Ejercicio guiado<a class="headerlink" href="#ejercicio-guiado" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Crear una lista de 10 números y calcular su media manualmente.</p></li>
+<li><p>Convertir la lista en un array de NumPy y calcular la media con <code class="docutils literal notranslate"><span class="pre">.mean()</span></code>.</p></li>
+<li><p>Crear un DataFrame con nombres y notas de 5 alumnos.</p></li>
+<li><p>Calcular la nota media usando pandas.</p></li>
+</ol>
+<p>Estos ejercicios permiten aplicar los conceptos aprendidos y familiarizarse con la sintaxis y las herramientas que se usarán durante todo el curso.</p>
+</section>
+<hr class="docutils" />
+<section id="conclusiones-de-la-sesion">
+<h2>Conclusiones de la sesión<a class="headerlink" href="#conclusiones-de-la-sesion" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>El análisis de datos consiste en recolectar, limpiar, explorar, modelar y comunicar datos.</p></li>
+<li><p>Python y Jupyter Notebook permiten desarrollar análisis completos de manera interactiva y reproducible.</p></li>
+<li><p>Hemos visto los tipos de datos básicos, estructuras fundamentales y los primeros pasos con pandas y NumPy.</p></li>
+<li><p>En la próxima sesión se profundizará en la <strong>exploración de datos (EDA)</strong> y en la <strong>limpieza de datos</strong> para preparar datasets para análisis más avanzados.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="SIQ025/SIQ525 — Software para el Análisis de Datos con Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

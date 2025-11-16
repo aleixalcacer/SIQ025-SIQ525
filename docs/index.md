@@ -13,7 +13,7 @@ Bienvenido/a a la documentación del módulo 2 de la asignatura SIQ025/SIQ525. A
 :caption: Sesiones
 :hidden: true
 
-sessions/sesion_1
+sessions/session_1
 ```
 
 ---

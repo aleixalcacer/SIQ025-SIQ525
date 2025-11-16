@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA) &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SIQ025 — Programari Professional d'Anàlisi de Dades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sesion_1.html">Sesión 1 — Introducción al Análisis de Datos con Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SIQ025 — Programari Professional d'Anàlisi de Dades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sessions/sesion_2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sesion-2-exploracion-y-limpieza-de-datos-con-pandas-eda">
+<h1>Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA)<a class="headerlink" href="#sesion-2-exploracion-y-limpieza-de-datos-con-pandas-eda" title="Link to this heading"></a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading"></a></h2>
+<p>Una vez que tenemos los datos cargados en Python, el siguiente paso es <strong>explorarlos y limpiarlos</strong>. Esta fase se conoce como <strong>Exploratory Data Analysis (EDA)</strong> y es fundamental para comprender la estructura, las características y la calidad de los datos antes de realizar cualquier análisis avanzado o modelado. EDA nos ayuda a identificar errores, valores faltantes, outliers, tendencias y relaciones importantes que pueden influir en nuestras decisiones o modelos.</p>
+<p>En esta sesión profundizaremos en el uso de <strong>pandas</strong> y <strong>NumPy</strong>, además de utilizar librerías de visualización como <strong>Seaborn</strong> y <strong>Matplotlib</strong> para generar gráficos que nos permitan entender mejor los datos.</p>
+</section>
+<hr class="docutils" />
+<section id="importacion-de-datos">
+<h2>Importación de datos<a class="headerlink" href="#importacion-de-datos" title="Link to this heading"></a></h2>
+<p>Para comenzar, necesitamos importar los datos a un DataFrame de pandas. Los datos pueden provenir de archivos CSV, Excel, Parquet u otras fuentes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Cargar un archivo CSV</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ejemplo.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Mostrar las primeras filas</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Esto nos permite obtener una vista rápida de los datos y familiarizarnos con las columnas y tipos de información.</p>
+</section>
+<hr class="docutils" />
+<section id="exploracion-basica-de-los-datos">
+<h2>Exploración básica de los datos<a class="headerlink" href="#exploracion-basica-de-los-datos" title="Link to this heading"></a></h2>
+<p>pandas ofrece múltiples métodos para inspeccionar rápidamente un dataset:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df.head(n)</span></code> → Muestra las primeras n filas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.tail(n)</span></code> → Muestra las últimas n filas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.info()</span></code> → Información general sobre columnas, tipos y valores nulos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.describe()</span></code> → Estadísticas descriptivas de columnas numéricas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.shape</span></code> → Número de filas y columnas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.columns</span></code> → Nombres de las columnas.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Esta exploración inicial nos permite identificar rápidamente columnas con datos faltantes o tipos de datos incorrectos.</p>
+</section>
+<hr class="docutils" />
+<section id="limpieza-de-datos">
+<h2>Limpieza de datos<a class="headerlink" href="#limpieza-de-datos" title="Link to this heading"></a></h2>
+<p>Los datos reales casi siempre contienen errores, duplicados o valores faltantes. Algunas técnicas básicas de limpieza incluyen:</p>
+<section id="valores-nulos">
+<h3>1. Valores nulos<a class="headerlink" href="#valores-nulos" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar valores nulos por columna</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># Eliminar filas con valores nulos</span>
+<span class="n">df_limpio</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Rellenar valores nulos con un valor específico</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="duplicados">
+<h3>2. Duplicados<a class="headerlink" href="#duplicados" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar filas duplicadas</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="reemplazar-valores">
+<h3>3. Reemplazar valores<a class="headerlink" href="#reemplazar-valores" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reemplazar valores específicos</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;antiguo_valor&#39;</span><span class="p">:</span> <span class="s1">&#39;nuevo_valor&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="conversion-de-tipos">
+<h3>4. Conversión de tipos<a class="headerlink" href="#conversion-de-tipos" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convertir columna a numérica</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Estas acciones aseguran que los datos estén en un formato adecuado para análisis y modelado posterior.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="filtrado-y-seleccion-de-datos">
+<h2>Filtrado y selección de datos<a class="headerlink" href="#filtrado-y-seleccion-de-datos" title="Link to this heading"></a></h2>
+<p>Seleccionar subconjuntos de datos según condiciones es muy común en EDA:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar filas donde columna &gt; 10</span>
+<span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="c1"># Filtrar usando varias condiciones</span>
+<span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna1&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna2&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;valor&#39;</span><span class="p">)]</span>
+
+<span class="c1"># Seleccionar columnas específicas</span>
+<span class="n">sub_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;columna1&#39;</span><span class="p">,</span> <span class="s1">&#39;columna3&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Esto permite concentrarse en los datos de interés y preparar conjuntos de datos específicos para análisis más detallados.</p>
+</section>
+<hr class="docutils" />
+<section id="visualizacion-basica">
+<h2>Visualización básica<a class="headerlink" href="#visualizacion-basica" title="Link to this heading"></a></h2>
+<p>Visualizar los datos ayuda a detectar patrones y relaciones que no se ven fácilmente en tablas.</p>
+<section id="histogramas-y-distribuciones">
+<h3>Histogramas y distribuciones<a class="headerlink" href="#histogramas-y-distribuciones" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna_numerica&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="diagramas-de-caja-boxplot">
+<h3>Diagramas de caja (boxplot)<a class="headerlink" href="#diagramas-de-caja-boxplot" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;categoria&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;valor&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="graficos-de-dispersion-scatterplot">
+<h3>Gráficos de dispersión (scatterplot)<a class="headerlink" href="#graficos-de-dispersion-scatterplot" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;columna1&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;columna2&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;categoria&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Estas visualizaciones permiten detectar outliers, tendencias y relaciones entre variables.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ejercicio-guiado">
+<h2>Ejercicio guiado<a class="headerlink" href="#ejercicio-guiado" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Cargar un dataset CSV proporcionado.</p></li>
+<li><p>Explorar sus primeras filas y obtener estadísticas descriptivas.</p></li>
+<li><p>Identificar y tratar valores nulos o duplicados.</p></li>
+<li><p>Filtrar un subconjunto de datos según condiciones específicas.</p></li>
+<li><p>Generar un histograma, un boxplot y un scatterplot para explorar distribuciones y relaciones.</p></li>
+</ol>
+<p>Este ejercicio permite practicar todas las técnicas de exploración y limpieza de datos vistas en la sesión.</p>
+</section>
+<hr class="docutils" />
+<section id="conclusiones-de-la-sesion">
+<h2>Conclusiones de la sesión<a class="headerlink" href="#conclusiones-de-la-sesion" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>La <strong>exploración y limpieza de datos</strong> es un paso crítico en cualquier análisis de datos.</p></li>
+<li><p>pandas y NumPy ofrecen herramientas potentes para manipular datos de manera eficiente.</p></li>
+<li><p>Seaborn y Matplotlib permiten crear visualizaciones informativas para entender patrones, detectar errores y presentar resultados.</p></li>
+<li><p>Mantener un flujo de trabajo organizado y reproducible desde el inicio facilita el análisis y la comunicación de los resultados.</p></li>
+</ul>
+<p>En la próxima sesión se profundizará en <strong>preprocesamiento avanzado y preparación de datos para modelado</strong>, utilizando técnicas como escalado, codificación de variables categóricas y pipelines de scikit-learn.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

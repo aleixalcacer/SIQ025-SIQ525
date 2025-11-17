@@ -14,6 +14,7 @@ Bienvenido/a a la documentación del módulo 2 de la asignatura SIQ025/SIQ525. A
 :hidden: true
 
 sessions/session_1
+sessions/session_2
 ```
 
 ---

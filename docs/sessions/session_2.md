@@ -1,142 +1,177 @@
-# Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA)
+# Sesión 2 — Manipulación de datos
 
-## Introducción
-Una vez que tenemos los datos cargados en Python, el siguiente paso es **explorarlos y limpiarlos**. Esta fase se conoce como **Exploratory Data Analysis (EDA)** y es fundamental para comprender la estructura, las características y la calidad de los datos antes de realizar cualquier análisis avanzado o modelado. EDA nos ayuda a identificar errores, valores faltantes, outliers, tendencias y relaciones importantes que pueden influir en nuestras decisiones o modelos.
+## Objetivos
 
-En esta sesión profundizaremos en el uso de **pandas** y **NumPy**, además de utilizar librerías de visualización como **Seaborn** y **Matplotlib** para generar gráficos que nos permitan entender mejor los datos.
+En esta sesión nos centraremos en **manipular datos con pandas**, aprendiendo a trabajar de forma eficiente con DataFrames y a aplicar transformaciones habituales en análisis de datos reales.
+
+Los objetivos principales son:
+
+- Dominar la estructura de datos principal de pandas: el **DataFrame**.
+- Realizar **transformaciones** y operaciones comunes en análisis de datos reales.
+- Practicar **importación**, **filtrado**, **selección**, **ordenación** y **agregaciones por grupos**.
 
 ---
 
-## Importación de datos
-Para comenzar, necesitamos importar los datos a un DataFrame de pandas. Los datos pueden provenir de archivos CSV, Excel, Parquet u otras fuentes.
+## Contenido
+
+En esta sesión veremos:
+
+- Importación de datos (CSV, Excel).
+- Filtrado, selección y ordenación.
+- Agregaciones y estadísticas por grupos (`groupby`).
+
+---
+
+## Qué es un DataFrame
+
+Un **DataFrame** es una estructura de datos bidimensional similar a una tabla, donde los datos están organizados en filas y columnas. Cada columna puede tener un tipo de dato diferente (números, texto, fechas, etc.), lo que lo hace muy flexible para manejar datos heterogéneos.
+
+Es similar a una hoja de cálculo o una tabla SQL, y es la estructura principal que utilizaremos para almacenar y manipular datos. Los DataFrames permiten realizar operaciones complejas de manera eficiente y con una sintaxis intuitiva.
+
+## Importación de datos (CSV, Excel)
+
+Para comenzar, necesitamos importar los datos a un DataFrame de pandas. Los datos pueden provenir de archivos CSV o Excel, entre otros formatos.
 
 ```python
 import pandas as pd
 
 # Cargar un archivo CSV
-df = pd.read_csv('data/ejemplo.csv')
+df_csv = pd.read_csv('data/ejemplo.csv')
+
+# Cargar un archivo de Excel
+df_excel = pd.read_excel('data/ejemplo.xlsx', sheet_name='Hoja1')
 
 # Mostrar las primeras filas
-df.head()
+df_csv.head()
 ```
-Esto nos permite obtener una vista rápida de los datos y familiarizarnos con las columnas y tipos de información.
 
 ---
 
-## Exploración básica de los datos
-pandas ofrece múltiples métodos para inspeccionar rápidamente un dataset:
-- `df.head(n)` → Muestra las primeras n filas.
-- `df.tail(n)` → Muestra las últimas n filas.
-- `df.info()` → Información general sobre columnas, tipos y valores nulos.
-- `df.describe()` → Estadísticas descriptivas de columnas numéricas.
-- `df.shape` → Número de filas y columnas.
-- `df.columns` → Nombres de las columnas.
+## Estructura básica de un DataFrame
+
+pandas ofrece múltiples métodos para inspeccionar rápidamente un DataFrame y entender su estructura:
 
 ```python
-print(df.shape)
-print(df.columns)
-df.info()
-df.describe()
+print(df_csv.shape)      # Filas y columnas
+print(df_csv.columns)    # Nombres de columnas
+df_csv.info()            # Tipos de datos y nulos
+df_csv.head()            # Primeras filas
+df_csv.tail()            # Últimas filas
 ```
-Esta exploración inicial nos permite identificar rápidamente columnas con datos faltantes o tipos de datos incorrectos.
-
----
-
-## Limpieza de datos
-Los datos reales casi siempre contienen errores, duplicados o valores faltantes. Algunas técnicas básicas de limpieza incluyen:
-
-### 1. Valores nulos
-```python
-# Contar valores nulos por columna
-print(df.isnull().sum())
-
-# Eliminar filas con valores nulos
-df_limpio = df.dropna()
-
-# Rellenar valores nulos con un valor específico
-df['columna'] = df['columna'].fillna(0)
-```
-
-### 2. Duplicados
-```python
-# Eliminar filas duplicadas
-df = df.drop_duplicates()
-```
-
-### 3. Reemplazar valores
-```python
-# Reemplazar valores específicos
-df['columna'] = df['columna'].replace({'antiguo_valor': 'nuevo_valor'})
-```
-
-### 4. Conversión de tipos
-```python
-# Convertir columna a numérica
-df['columna'] = pd.to_numeric(df['columna'], errors='coerce')
-```
-Estas acciones aseguran que los datos estén en un formato adecuado para análisis y modelado posterior.
 
 ---
 
 ## Filtrado y selección de datos
-Seleccionar subconjuntos de datos según condiciones es muy común en EDA:
+
+Seleccionar filas y columnas es una operación central en la manipulación de datos.
+
 ```python
-# Filtrar filas donde columna > 10
-df_filtrado = df[df['columna'] > 10]
+# Seleccionar una columna
+col = df_csv['columna1']
 
-# Filtrar usando varias condiciones
-df_filtrado = df[(df['columna1'] > 10) & (df['columna2'] == 'valor')]
+# Seleccionar varias columnas
+sub_df = df_csv[['columna1', 'columna2']]
 
-# Seleccionar columnas específicas
-sub_df = df[['columna1', 'columna3']]
+# Filtrar filas según condición
+df_filtrado = df_csv[df_csv['columna_numerica'] > 10]
+
+# Varias condiciones (AND / OR)
+df_filtrado = df_csv[
+    (df_csv['columna1'] > 10) & (df_csv['columna2'] == 'valor')
+]
 ```
-Esto permite concentrarse en los datos de interés y preparar conjuntos de datos específicos para análisis más detallados.
+
+### Selección por etiquetas e índices: loc e iloc
+
+```python
+# Selección por etiqueta (nombre de fila/columna)
+df_loc = df_csv.loc[0:10, ['columna1', 'columna2']]
+
+# Selección por posición (índices enteros)
+df_iloc = df_csv.iloc[0:10, 0:2]
+```
 
 ---
 
-## Visualización básica
-Visualizar los datos ayuda a detectar patrones y relaciones que no se ven fácilmente en tablas.
+## Ordenación de datos
 
-### Histogramas y distribuciones
+Ordenar datos es útil para priorizar o revisar registros específicos.
+
 ```python
-import seaborn as sns
-import matplotlib.pyplot as plt
+# Ordenar por una columna ascendente
+df_ordenado = df_csv.sort_values(by='columna_numerica')
 
-sns.histplot(df['columna_numerica'], bins=20)
-plt.show()
+# Ordenar por varias columnas y orden descendente
+df_ordenado = df_csv.sort_values(
+    by=['columna_categoria', 'columna_numerica'],
+    ascending=[True, False]
+)
 ```
 
-### Diagramas de caja (boxplot)
+---
+
+## Transformaciones comunes en DataFrames
+
+Algunas transformaciones típicas en análisis reales incluyen crear nuevas columnas, limpiar valores o cambiar tipos.
+
 ```python
-sns.boxplot(x='categoria', y='valor', data=df)
-plt.show()
+# Crear una nueva columna a partir de otras
+df_csv['ratio'] = df_csv['columna_a'] / df_csv['columna_b']
+
+# Reemplazar valores específicos
+df_csv['columna_categoria'] = df_csv['columna_categoria'].replace(
+    {'antiguo': 'nuevo'}
+)
+
+# Conversión de tipos
+df_csv['columna_numerica'] = pd.to_numeric(
+    df_csv['columna_numerica'],
+    errors='coerce'
+)
 ```
 
-### Gráficos de dispersión (scatterplot)
+---
+
+## Agregaciones y estadísticas por grupos (groupby)
+
+El método `groupby` permite calcular estadísticas por grupos, algo muy usado en análisis reales (por ejemplo, ventas por región, media por categoría, etc.).
+
 ```python
-sns.scatterplot(x='columna1', y='columna2', hue='categoria', data=df)
-plt.show()
+# Agrupar por una columna y calcular la media
+media_por_grupo = df_csv.groupby('categoria')['valor'].mean()
+
+# Varios agregados por grupo
+agg_por_grupo = df_csv.groupby('categoria').agg({
+    'valor': ['mean', 'sum', 'count'],
+    'otra_columna': 'max'
+})
+
+# Agrupar por varias columnas
+multi_grupo = df_csv.groupby(['categoria', 'subcategoria'])['valor'].sum()
 ```
-Estas visualizaciones permiten detectar outliers, tendencias y relaciones entre variables.
+
+También podemos resetear el índice para obtener un DataFrame “plano”:
+
+```python
+agg_por_grupo = agg_por_grupo.reset_index()
+```
 
 ---
 
 ## Ejercicio guiado
-1. Cargar un dataset CSV proporcionado.
-2. Explorar sus primeras filas y obtener estadísticas descriptivas.
-3. Identificar y tratar valores nulos o duplicados.
-4. Filtrar un subconjunto de datos según condiciones específicas.
-5. Generar un histograma, un boxplot y un scatterplot para explorar distribuciones y relaciones.
 
-Este ejercicio permite practicar todas las técnicas de exploración y limpieza de datos vistas en la sesión.
+1. Importar un dataset desde un archivo CSV (y, si es posible, otro desde Excel).
+2. Explorar la estructura: usar `shape`, `columns`, `info()` y `head()`.
+3. Aplicar filtrados: seleccionar filas según una o varias condiciones.
+4. Seleccionar subconjuntos de columnas y ordenar el DataFrame por una o varias columnas.
+5. Crear al menos una nueva columna derivada de otras.
+6. Utilizar `groupby` para calcular estadísticas (media, suma, conteo) por una columna categórica.
 
 ---
 
 ## Conclusiones de la sesión
-- La **exploración y limpieza de datos** es un paso crítico en cualquier análisis de datos.
-- pandas y NumPy ofrecen herramientas potentes para manipular datos de manera eficiente.
-- Seaborn y Matplotlib permiten crear visualizaciones informativas para entender patrones, detectar errores y presentar resultados.
-- Mantener un flujo de trabajo organizado y reproducible desde el inicio facilita el análisis y la comunicación de los resultados.
 
-En la próxima sesión se profundizará en **preprocesamiento avanzado y preparación de datos para modelado**, utilizando técnicas como escalado, codificación de variables categóricas y pipelines de scikit-learn.
-
+- La **manipulación de datos con pandas** se basa en dominar los DataFrames.
+- Saber **importar**, **filtrar**, **seleccionar**, **ordenar** y **agrupar** datos es esencial para cualquier análisis real.
+- El método `groupby` permite obtener estadísticas por grupos de forma clara y eficiente.
+- Estas operaciones son la base sobre la que construiremos análisis más avanzados y modelos en sesiones posteriores.

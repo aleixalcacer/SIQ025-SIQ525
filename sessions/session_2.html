@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA) &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
+  <title>Sesión 2 — Manipulación de datos &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -18,7 +18,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Sesión 1 — Introducción al Análisis de Datos con Python" href="session_1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,8 +42,25 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="session_1.html">Sesión 1 — Introducción al Análisis de Datos con Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sesión 2 — Manipulación de datos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objetivos">Objetivos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contenido">Contenido</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#que-es-un-dataframe">Qué es un DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importacion-de-datos-csv-excel">Importación de datos (CSV, Excel)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#estructura-basica-de-un-dataframe">Estructura básica de un DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtrado-y-seleccion-de-datos">Filtrado y selección de datos</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#seleccion-por-etiquetas-e-indices-loc-e-iloc">Selección por etiquetas e índices: loc e iloc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ordenacion-de-datos">Ordenación de datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transformaciones-comunes-en-dataframes">Transformaciones comunes en DataFrames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#agregaciones-y-estadisticas-por-grupos-groupby">Agregaciones y estadísticas por grupos (groupby)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejercicio-guiado">Ejercicio guiado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusiones-de-la-sesion">Conclusiones de la sesión</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -59,7 +77,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA)</li>
+      <li class="breadcrumb-item active">Sesión 2 — Manipulación de datos</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/sessions/session_2.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -69,163 +87,179 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="sesion-2-exploracion-y-limpieza-de-datos-con-pandas-eda">
-<h1>Sesión 2 — Exploración y Limpieza de Datos con pandas (EDA)<a class="headerlink" href="#sesion-2-exploracion-y-limpieza-de-datos-con-pandas-eda" title="Link to this heading"></a></h1>
-<section id="introduccion">
-<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading"></a></h2>
-<p>Una vez que tenemos los datos cargados en Python, el siguiente paso es <strong>explorarlos y limpiarlos</strong>. Esta fase se conoce como <strong>Exploratory Data Analysis (EDA)</strong> y es fundamental para comprender la estructura, las características y la calidad de los datos antes de realizar cualquier análisis avanzado o modelado. EDA nos ayuda a identificar errores, valores faltantes, outliers, tendencias y relaciones importantes que pueden influir en nuestras decisiones o modelos.</p>
-<p>En esta sesión profundizaremos en el uso de <strong>pandas</strong> y <strong>NumPy</strong>, además de utilizar librerías de visualización como <strong>Seaborn</strong> y <strong>Matplotlib</strong> para generar gráficos que nos permitan entender mejor los datos.</p>
+  <section id="sesion-2-manipulacion-de-datos">
+<h1>Sesión 2 — Manipulación de datos<a class="headerlink" href="#sesion-2-manipulacion-de-datos" title="Link to this heading"></a></h1>
+<section id="objetivos">
+<h2>Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading"></a></h2>
+<p>En esta sesión nos centraremos en <strong>manipular datos con pandas</strong>, aprendiendo a trabajar de forma eficiente con DataFrames y a aplicar transformaciones habituales en análisis de datos reales.</p>
+<p>Los objetivos principales son:</p>
+<ul class="simple">
+<li><p>Dominar la estructura de datos principal de pandas: el <strong>DataFrame</strong>.</p></li>
+<li><p>Realizar <strong>transformaciones</strong> y operaciones comunes en análisis de datos reales.</p></li>
+<li><p>Practicar <strong>importación</strong>, <strong>filtrado</strong>, <strong>selección</strong>, <strong>ordenación</strong> y <strong>agregaciones por grupos</strong>.</p></li>
+</ul>
 </section>
 <hr class="docutils" />
-<section id="importacion-de-datos">
-<h2>Importación de datos<a class="headerlink" href="#importacion-de-datos" title="Link to this heading"></a></h2>
-<p>Para comenzar, necesitamos importar los datos a un DataFrame de pandas. Los datos pueden provenir de archivos CSV, Excel, Parquet u otras fuentes.</p>
+<section id="contenido">
+<h2>Contenido<a class="headerlink" href="#contenido" title="Link to this heading"></a></h2>
+<p>En esta sesión veremos:</p>
+<ul class="simple">
+<li><p>Importación de datos (CSV, Excel).</p></li>
+<li><p>Filtrado, selección y ordenación.</p></li>
+<li><p>Agregaciones y estadísticas por grupos (<code class="docutils literal notranslate"><span class="pre">groupby</span></code>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="que-es-un-dataframe">
+<h2>Qué es un DataFrame<a class="headerlink" href="#que-es-un-dataframe" title="Link to this heading"></a></h2>
+<p>Un <strong>DataFrame</strong> es una estructura de datos bidimensional similar a una tabla, donde los datos están organizados en filas y columnas. Cada columna puede tener un tipo de dato diferente (números, texto, fechas, etc.), lo que lo hace muy flexible para manejar datos heterogéneos.</p>
+<p>Es similar a una hoja de cálculo o una tabla SQL, y es la estructura principal que utilizaremos para almacenar y manipular datos. Los DataFrames permiten realizar operaciones complejas de manera eficiente y con una sintaxis intuitiva.</p>
+</section>
+<section id="importacion-de-datos-csv-excel">
+<h2>Importación de datos (CSV, Excel)<a class="headerlink" href="#importacion-de-datos-csv-excel" title="Link to this heading"></a></h2>
+<p>Para comenzar, necesitamos importar los datos a un DataFrame de pandas. Los datos pueden provenir de archivos CSV o Excel, entre otros formatos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Cargar un archivo CSV</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ejemplo.csv&#39;</span><span class="p">)</span>
+<span class="n">df_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ejemplo.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cargar un archivo de Excel</span>
+<span class="n">df_excel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/ejemplo.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Hoja1&#39;</span><span class="p">)</span>
 
 <span class="c1"># Mostrar las primeras filas</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">df_csv</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Esto nos permite obtener una vista rápida de los datos y familiarizarnos con las columnas y tipos de información.</p>
 </section>
 <hr class="docutils" />
-<section id="exploracion-basica-de-los-datos">
-<h2>Exploración básica de los datos<a class="headerlink" href="#exploracion-basica-de-los-datos" title="Link to this heading"></a></h2>
-<p>pandas ofrece múltiples métodos para inspeccionar rápidamente un dataset:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">df.head(n)</span></code> → Muestra las primeras n filas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.tail(n)</span></code> → Muestra las últimas n filas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.info()</span></code> → Información general sobre columnas, tipos y valores nulos.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.describe()</span></code> → Estadísticas descriptivas de columnas numéricas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.shape</span></code> → Número de filas y columnas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df.columns</span></code> → Nombres de las columnas.</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<section id="estructura-basica-de-un-dataframe">
+<h2>Estructura básica de un DataFrame<a class="headerlink" href="#estructura-basica-de-un-dataframe" title="Link to this heading"></a></h2>
+<p>pandas ofrece múltiples métodos para inspeccionar rápidamente un DataFrame y entender su estructura:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df_csv</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>      <span class="c1"># Filas y columnas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_csv</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>    <span class="c1"># Nombres de columnas</span>
+<span class="n">df_csv</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>            <span class="c1"># Tipos de datos y nulos</span>
+<span class="n">df_csv</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>            <span class="c1"># Primeras filas</span>
+<span class="n">df_csv</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>            <span class="c1"># Últimas filas</span>
 </pre></div>
 </div>
-<p>Esta exploración inicial nos permite identificar rápidamente columnas con datos faltantes o tipos de datos incorrectos.</p>
-</section>
-<hr class="docutils" />
-<section id="limpieza-de-datos">
-<h2>Limpieza de datos<a class="headerlink" href="#limpieza-de-datos" title="Link to this heading"></a></h2>
-<p>Los datos reales casi siempre contienen errores, duplicados o valores faltantes. Algunas técnicas básicas de limpieza incluyen:</p>
-<section id="valores-nulos">
-<h3>1. Valores nulos<a class="headerlink" href="#valores-nulos" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar valores nulos por columna</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-
-<span class="c1"># Eliminar filas con valores nulos</span>
-<span class="n">df_limpio</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-
-<span class="c1"># Rellenar valores nulos con un valor específico</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="duplicados">
-<h3>2. Duplicados<a class="headerlink" href="#duplicados" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eliminar filas duplicadas</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-<section id="reemplazar-valores">
-<h3>3. Reemplazar valores<a class="headerlink" href="#reemplazar-valores" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reemplazar valores específicos</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;antiguo_valor&#39;</span><span class="p">:</span> <span class="s1">&#39;nuevo_valor&#39;</span><span class="p">})</span>
-</pre></div>
-</div>
-</section>
-<section id="conversion-de-tipos">
-<h3>4. Conversión de tipos<a class="headerlink" href="#conversion-de-tipos" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convertir columna a numérica</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Estas acciones aseguran que los datos estén en un formato adecuado para análisis y modelado posterior.</p>
-</section>
 </section>
 <hr class="docutils" />
 <section id="filtrado-y-seleccion-de-datos">
 <h2>Filtrado y selección de datos<a class="headerlink" href="#filtrado-y-seleccion-de-datos" title="Link to this heading"></a></h2>
-<p>Seleccionar subconjuntos de datos según condiciones es muy común en EDA:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtrar filas donde columna &gt; 10</span>
-<span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+<p>Seleccionar filas y columnas es una operación central en la manipulación de datos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Seleccionar una columna</span>
+<span class="n">col</span> <span class="o">=</span> <span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna1&#39;</span><span class="p">]</span>
 
-<span class="c1"># Filtrar usando varias condiciones</span>
-<span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna1&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna2&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;valor&#39;</span><span class="p">)]</span>
+<span class="c1"># Seleccionar varias columnas</span>
+<span class="n">sub_df</span> <span class="o">=</span> <span class="n">df_csv</span><span class="p">[[</span><span class="s1">&#39;columna1&#39;</span><span class="p">,</span> <span class="s1">&#39;columna2&#39;</span><span class="p">]]</span>
 
-<span class="c1"># Seleccionar columnas específicas</span>
-<span class="n">sub_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;columna1&#39;</span><span class="p">,</span> <span class="s1">&#39;columna3&#39;</span><span class="p">]]</span>
+<span class="c1"># Filtrar filas según condición</span>
+<span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df_csv</span><span class="p">[</span><span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_numerica&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="c1"># Varias condiciones (AND / OR)</span>
+<span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df_csv</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna1&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna2&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;valor&#39;</span><span class="p">)</span>
+<span class="p">]</span>
 </pre></div>
 </div>
-<p>Esto permite concentrarse en los datos de interés y preparar conjuntos de datos específicos para análisis más detallados.</p>
+<section id="seleccion-por-etiquetas-e-indices-loc-e-iloc">
+<h3>Selección por etiquetas e índices: loc e iloc<a class="headerlink" href="#seleccion-por-etiquetas-e-indices-loc-e-iloc" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selección por etiqueta (nombre de fila/columna)</span>
+<span class="n">df_loc</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;columna1&#39;</span><span class="p">,</span> <span class="s1">&#39;columna2&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Selección por posición (índices enteros)</span>
+<span class="n">df_iloc</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
 </section>
 <hr class="docutils" />
-<section id="visualizacion-basica">
-<h2>Visualización básica<a class="headerlink" href="#visualizacion-basica" title="Link to this heading"></a></h2>
-<p>Visualizar los datos ayuda a detectar patrones y relaciones que no se ven fácilmente en tablas.</p>
-<section id="histogramas-y-distribuciones">
-<h3>Histogramas y distribuciones<a class="headerlink" href="#histogramas-y-distribuciones" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<section id="ordenacion-de-datos">
+<h2>Ordenación de datos<a class="headerlink" href="#ordenacion-de-datos" title="Link to this heading"></a></h2>
+<p>Ordenar datos es útil para priorizar o revisar registros específicos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ordenar por una columna ascendente</span>
+<span class="n">df_ordenado</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;columna_numerica&#39;</span><span class="p">)</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;columna_numerica&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Ordenar por varias columnas y orden descendente</span>
+<span class="n">df_ordenado</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;columna_categoria&#39;</span><span class="p">,</span> <span class="s1">&#39;columna_numerica&#39;</span><span class="p">],</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="diagramas-de-caja-boxplot">
-<h3>Diagramas de caja (boxplot)<a class="headerlink" href="#diagramas-de-caja-boxplot" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;categoria&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;valor&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<hr class="docutils" />
+<section id="transformaciones-comunes-en-dataframes">
+<h2>Transformaciones comunes en DataFrames<a class="headerlink" href="#transformaciones-comunes-en-dataframes" title="Link to this heading"></a></h2>
+<p>Algunas transformaciones típicas en análisis reales incluyen crear nuevas columnas, limpiar valores o cambiar tipos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear una nueva columna a partir de otras</span>
+<span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_a&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_b&#39;</span><span class="p">]</span>
+
+<span class="c1"># Reemplazar valores específicos</span>
+<span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_categoria&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_categoria&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">&#39;antiguo&#39;</span><span class="p">:</span> <span class="s1">&#39;nuevo&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Conversión de tipos</span>
+<span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_numerica&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span>
+    <span class="n">df_csv</span><span class="p">[</span><span class="s1">&#39;columna_numerica&#39;</span><span class="p">],</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="graficos-de-dispersion-scatterplot">
-<h3>Gráficos de dispersión (scatterplot)<a class="headerlink" href="#graficos-de-dispersion-scatterplot" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;columna1&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;columna2&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;categoria&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<hr class="docutils" />
+<section id="agregaciones-y-estadisticas-por-grupos-groupby">
+<h2>Agregaciones y estadísticas por grupos (groupby)<a class="headerlink" href="#agregaciones-y-estadisticas-por-grupos-groupby" title="Link to this heading"></a></h2>
+<p>El método <code class="docutils literal notranslate"><span class="pre">groupby</span></code> permite calcular estadísticas por grupos, algo muy usado en análisis reales (por ejemplo, ventas por región, media por categoría, etc.).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Agrupar por una columna y calcular la media</span>
+<span class="n">media_por_grupo</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;categoria&#39;</span><span class="p">)[</span><span class="s1">&#39;valor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Varios agregados por grupo</span>
+<span class="n">agg_por_grupo</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;categoria&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;valor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;otra_columna&#39;</span><span class="p">:</span> <span class="s1">&#39;max&#39;</span>
+<span class="p">})</span>
+
+<span class="c1"># Agrupar por varias columnas</span>
+<span class="n">multi_grupo</span> <span class="o">=</span> <span class="n">df_csv</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;categoria&#39;</span><span class="p">,</span> <span class="s1">&#39;subcategoria&#39;</span><span class="p">])[</span><span class="s1">&#39;valor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Estas visualizaciones permiten detectar outliers, tendencias y relaciones entre variables.</p>
-</section>
+<p>También podemos resetear el índice para obtener un DataFrame “plano”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">agg_por_grupo</span> <span class="o">=</span> <span class="n">agg_por_grupo</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 <hr class="docutils" />
 <section id="ejercicio-guiado">
 <h2>Ejercicio guiado<a class="headerlink" href="#ejercicio-guiado" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>Cargar un dataset CSV proporcionado.</p></li>
-<li><p>Explorar sus primeras filas y obtener estadísticas descriptivas.</p></li>
-<li><p>Identificar y tratar valores nulos o duplicados.</p></li>
-<li><p>Filtrar un subconjunto de datos según condiciones específicas.</p></li>
-<li><p>Generar un histograma, un boxplot y un scatterplot para explorar distribuciones y relaciones.</p></li>
+<li><p>Importar un dataset desde un archivo CSV (y, si es posible, otro desde Excel).</p></li>
+<li><p>Explorar la estructura: usar <code class="docutils literal notranslate"><span class="pre">shape</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code>, <code class="docutils literal notranslate"><span class="pre">info()</span></code> y <code class="docutils literal notranslate"><span class="pre">head()</span></code>.</p></li>
+<li><p>Aplicar filtrados: seleccionar filas según una o varias condiciones.</p></li>
+<li><p>Seleccionar subconjuntos de columnas y ordenar el DataFrame por una o varias columnas.</p></li>
+<li><p>Crear al menos una nueva columna derivada de otras.</p></li>
+<li><p>Utilizar <code class="docutils literal notranslate"><span class="pre">groupby</span></code> para calcular estadísticas (media, suma, conteo) por una columna categórica.</p></li>
 </ol>
-<p>Este ejercicio permite practicar todas las técnicas de exploración y limpieza de datos vistas en la sesión.</p>
 </section>
 <hr class="docutils" />
 <section id="conclusiones-de-la-sesion">
 <h2>Conclusiones de la sesión<a class="headerlink" href="#conclusiones-de-la-sesion" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>La <strong>exploración y limpieza de datos</strong> es un paso crítico en cualquier análisis de datos.</p></li>
-<li><p>pandas y NumPy ofrecen herramientas potentes para manipular datos de manera eficiente.</p></li>
-<li><p>Seaborn y Matplotlib permiten crear visualizaciones informativas para entender patrones, detectar errores y presentar resultados.</p></li>
-<li><p>Mantener un flujo de trabajo organizado y reproducible desde el inicio facilita el análisis y la comunicación de los resultados.</p></li>
+<li><p>La <strong>manipulación de datos con pandas</strong> se basa en dominar los DataFrames.</p></li>
+<li><p>Saber <strong>importar</strong>, <strong>filtrar</strong>, <strong>seleccionar</strong>, <strong>ordenar</strong> y <strong>agrupar</strong> datos es esencial para cualquier análisis real.</p></li>
+<li><p>El método <code class="docutils literal notranslate"><span class="pre">groupby</span></code> permite obtener estadísticas por grupos de forma clara y eficiente.</p></li>
+<li><p>Estas operaciones son la base sobre la que construiremos análisis más avanzados y modelos en sesiones posteriores.</p></li>
 </ul>
-<p>En la próxima sesión se profundizará en <strong>preprocesamiento avanzado y preparación de datos para modelado</strong>, utilizando técnicas como escalado, codificación de variables categóricas y pipelines de scikit-learn.</p>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="session_1.html" class="btn btn-neutral float-left" title="Sesión 1 — Introducción al Análisis de Datos con Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

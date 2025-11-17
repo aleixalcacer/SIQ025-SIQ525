@@ -1,24 +1,11 @@
-# Sesión 2 — Manipulación de datos
+# Sesión 2 — Importación y manipulación de datos
 
 ## Objetivos
 
-En esta sesión nos centraremos en **manipular datos con pandas**, aprendiendo a trabajar de forma eficiente con DataFrames y a aplicar transformaciones habituales en análisis de datos reales.
-
-Los objetivos principales son:
-
+En esta sesión nos centraremos en **manipular datos con pandas**, aprendiendo a trabajar de forma eficiente con DataFrames y a aplicar transformaciones habituales en análisis de datos reales. Los objetivos principales son:
 - Dominar la estructura de datos principal de pandas: el **DataFrame**.
 - Realizar **transformaciones** y operaciones comunes en análisis de datos reales.
 - Practicar **importación**, **filtrado**, **selección**, **ordenación** y **agregaciones por grupos**.
-
----
-
-## Contenido
-
-En esta sesión veremos:
-
-- Importación de datos (CSV, Excel).
-- Filtrado, selección y ordenación.
-- Agregaciones y estadísticas por grupos (`groupby`).
 
 ---
 

@@ -1,5 +1,13 @@
 # Sesión 1 — Introducción al Análisis de Datos con Python
 
+
+## Objetivos
+
+En esta sesión aprenderemos los conceptos básicos del análisis de datos y cómo usar Python y Jupyter Notebook para realizar análisis sencillos. Al finalizar la sesión, serás capaz de:
+- Entender el **flujo general del análisis de datos**: recolección, limpieza, exploración, modelado y comunicación.
+- Utilizar **Jupyter Notebook** para documentar y ejecutar análisis de datos de manera interactiva.
+- Conocer los **tipos de datos fundamentales** en Python y las **estructuras básicas** como listas y diccionarios.
+
 ## Introducción
 El análisis de datos se ha convertido en una habilidad esencial en múltiples disciplinas, desde la investigación científica hasta la toma de decisiones empresariales. La capacidad de recolectar, limpiar, explorar, modelar y comunicar datos de manera efectiva permite extraer información valiosa que de otro modo permanecería oculta en grandes volúmenes de información. En esta asignatura aprenderemos a usar herramientas profesionales para realizar análisis de datos de manera rigurosa y reproducible.
 

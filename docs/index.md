@@ -16,6 +16,7 @@ Bienvenido/a a la documentación del módulo 2 de la asignatura SIQ025/SIQ525. A
 sessions/session_1
 sessions/session_2
 sessions/session_3
+sessions/session_4
 ```
 
 ---

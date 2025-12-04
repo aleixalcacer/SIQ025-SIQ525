@@ -18,7 +18,8 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Sesión 5 — Visualización de datos (Parte 1)" href="session_5.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,12 +42,44 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="session_1.html">Sesión 1 — Introducción al Análisis de Datos con Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="session_2.html">Sesión 2 — Importación y manipulación de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="session_3.html">Sesión 3 — Limpieza de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="session_4.html">Sesión 4 — Preprocesamiento y transformación de datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="session_5.html">Sesión 5 — Visualización de datos (Parte 1)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sesión 6 — Visualización de datos (Parte 2)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objetivos">Objetivos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduccion">Introducción</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preparacion-librerias-y-dataset-de-ejemplo">Preparación: librerías y dataset de ejemplo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faceting-y-visualizacion-multivariable-facetgrid-relplot-pairgrid">Faceting y visualización multivariable (FacetGrid, relplot, PairGrid)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#que-es-el-faceting">¿Qué es el faceting?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#facetgrid-basico">FacetGrid básico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atajos-con-relplot-y-otros">Atajos con <code class="docutils literal notranslate"><span class="pre">relplot</span></code> y otros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pairgrid-y-pairplot">PairGrid y pairplot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#violin-plots-y-combinaciones-avanzadas">Violin plots y combinaciones avanzadas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#violin-plot-basico">Violin plot básico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combinar-violin-plot-y-boxplot">Combinar violin plot y boxplot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#graficos-para-comunicar-resultados-de-analisis">Gráficos para comunicar resultados de análisis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualizacion-interactiva-con-plotly-opcional">Visualización interactiva con Plotly (opcional)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instalacion-si-no-lo-tienes">Instalación (si no lo tienes)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ejemplo-basico-con-scatter-interactivo">Ejemplo básico con scatter interactivo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#histograma-interactivo">Histograma interactivo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exportacion-de-graficos-de-calidad-profesional">Exportación de gráficos de calidad profesional</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exportar-con-matplotlib">Exportar con matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exportar-con-plotly">Exportar con Plotly</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ejercicios-sugeridos">Ejercicios sugeridos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusiones-de-la-sesion">Conclusiones de la sesión</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -465,7 +498,9 @@ Cuando queremos <strong>comunicar</strong> resultados (a profesores, clientes, e
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="session_5.html" class="btn btn-neutral float-left" title="Sesión 5 — Visualización de datos (Parte 1)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

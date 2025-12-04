@@ -18,6 +18,7 @@ sessions/session_2
 sessions/session_3
 sessions/session_4
 sessions/session_5
+sessions/session_6
 ```
 
 ---

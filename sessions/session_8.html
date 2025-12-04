@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión 8 — Comunicación y presentación de resultados &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SIQ025 — Programari Professional d'Anàlisi de Dades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="session_1.html">Sesión 1 — Introducción al Análisis de Datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_2.html">Sesión 2 — Importación y manipulación de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_3.html">Sesión 3 — Limpieza de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_4.html">Sesión 4 — Preprocesamiento y transformación de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_5.html">Sesión 5 — Visualización de datos (Parte 1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_6.html">Sesión 6 — Visualización de datos (Parte 2)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SIQ025 — Programari Professional d'Anàlisi de Dades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sesión 8 — Comunicación y presentación de resultados</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sessions/session_8.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sesion-8-comunicacion-y-presentacion-de-resultados">
+<h1>Sesión 8 — Comunicación y presentación de resultados<a class="headerlink" href="#sesion-8-comunicacion-y-presentacion-de-resultados" title="Link to this heading"></a></h1>
+<section id="objetivos">
+<h2>Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading"></a></h2>
+<p>En esta sesión trabajaremos cómo <strong>contar la historia de los datos</strong> de forma clara y profesional.</p>
+<p>Al finalizar la sesión, serás capaz de:</p>
+<ul class="simple">
+<li><p><strong>Presentar un análisis</strong> de forma estructurada y comprensible para distintos públicos.</p></li>
+<li><p>Preparar <strong>informes reproducibles y visualmente atractivos</strong> a partir de notebooks.</p></li>
+<li><p><strong>Exportar gráficos y tablas</strong> con calidad suficiente para informes y presentaciones.</p></li>
+<li><p>Aplicar <strong>buenas prácticas de documentación</strong> de código y análisis.</p></li>
+<li><p>Tener una primera idea de cómo crear <strong>mini‑apps interactivas</strong> con Streamlit (opcional).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading"></a></h2>
+<p>Hemos dedicado varias sesiones a:</p>
+<ul class="simple">
+<li><p>Cargar, limpiar y transformar datos.</p></li>
+<li><p>Visualizar distribuciones y relaciones.</p></li>
+<li><p>Entrenar y evaluar modelos.</p></li>
+</ul>
+<p>Todo esto pierde valor si no sabemos <strong>comunicar los resultados</strong> de forma efectiva. En muchos proyectos, la “entrega” final no es el notebook ni el modelo, sino:</p>
+<ul class="simple">
+<li><p>Un <strong>informe</strong> (PDF, HTML, documento).</p></li>
+<li><p>Una <strong>presentación</strong>.</p></li>
+<li><p>Un <strong>dashboard</strong> o pequeña aplicación interactiva.</p></li>
+</ul>
+<p>En esta sesión nos centraremos en cómo pasar de un notebook de trabajo a un <strong>producto final comprensible y reproducible</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="como-estructurar-un-informe-analitico-claro-y-reproducible">
+<h2>Cómo estructurar un informe analítico claro y reproducible<a class="headerlink" href="#como-estructurar-un-informe-analitico-claro-y-reproducible" title="Link to this heading"></a></h2>
+<p>Un buen informe no es solo una colección de gráficos; debe seguir una <strong>narrativa</strong>. Una estructura típica:</p>
+<ol class="arabic simple">
+<li><p><strong>Introducción / Contexto</strong></p>
+<ul class="simple">
+<li><p>¿Qué problema queremos resolver?</p></li>
+<li><p>¿De dónde vienen los datos?</p></li>
+<li><p>¿Qué preguntas queremos contestar?</p></li>
+</ul>
+</li>
+<li><p><strong>Datos y metodología</strong></p>
+<ul class="simple">
+<li><p>Descripción básica del dataset (origen, tamaño, variables importantes).</p></li>
+<li><p>Pasos principales de limpieza y preprocesamiento.</p></li>
+<li><p>Modelos o técnicas utilizadas.</p></li>
+</ul>
+</li>
+<li><p><strong>Resultados</strong></p>
+<ul class="simple">
+<li><p>Gráficos clave de EDA (distribuciones, relaciones importantes).</p></li>
+<li><p>Resultados de modelos (métricas, comparaciones).</p></li>
+<li><p>Segmentaciones o clusters, si aplica.</p></li>
+</ul>
+</li>
+<li><p><strong>Conclusiones e implicaciones</strong></p>
+<ul class="simple">
+<li><p>Resumen de hallazgos.</p></li>
+<li><p>Recomendaciones o decisiones posibles.</p></li>
+<li><p>Limitaciones del análisis (datos, supuestos, etc.).</p></li>
+</ul>
+</li>
+<li><p><strong>Anexos (opcional)</strong></p>
+<ul class="simple">
+<li><p>Detalles técnicos adicionales.</p></li>
+<li><p>Tablas largas, código más avanzado.</p></li>
+</ul>
+</li>
+</ol>
+<section id="notebooks-como-base-del-informe">
+<h3>Notebooks como base del informe<a class="headerlink" href="#notebooks-como-base-del-informe" title="Link to this heading"></a></h3>
+<p>En un Jupyter Notebook podemos reflejar esa estructura usando:</p>
+<ul class="simple">
+<li><p><strong>Títulos y subtítulos</strong> (Markdown: <code class="docutils literal notranslate"><span class="pre">#</span></code>, <code class="docutils literal notranslate"><span class="pre">##</span></code>, <code class="docutils literal notranslate"><span class="pre">###</span></code>).</p></li>
+<li><p>Texto explicativo en lenguaje natural.</p></li>
+<li><p>Celdas de código bien comentadas.</p></li>
+<li><p>Gráficos y tablas integrados en el flujo.</p></li>
+</ul>
+<p>Ejemplo de cabecera de informe en un notebook (celda Markdown):</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Análisis de la calidad del aire en Ciudad X</span>
+
+<span class="gu">## 1. Introducción</span>
+En este informe analizamos los niveles de contaminación en Ciudad X durante el año 2024...
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exportacion-de-graficos-y-tablas-de-calidad">
+<h2>Exportación de gráficos y tablas de calidad<a class="headerlink" href="#exportacion-de-graficos-y-tablas-de-calidad" title="Link to this heading"></a></h2>
+<p>A lo largo del curso hemos creado gráficos con <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> y <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>. Para usarlos en informes:</p>
+<section id="guardar-graficos-con-matplotlib">
+<h3>Guardar gráficos con matplotlib<a class="headerlink" href="#guardar-graficos-con-matplotlib" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="c1"># ... crear gráfico ...</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de &#39;variable&#39;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Guardar el gráfico en alta resolución</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;results/distribucion_variable.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;results/distribucion_variable.pdf&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Recomendaciones:</p>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">dpi=300</span></code> para calidad de impresión.</p></li>
+<li><p>Preferir formatos <strong>vectoriales</strong> (<code class="docutils literal notranslate"><span class="pre">.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">.svg</span></code>) cuando el destino es impresión o zoom alto.</p></li>
+<li><p>Asegurar:</p>
+<ul>
+<li><p>Títulos claros.</p></li>
+<li><p>Ejes etiquetados con unidades.</p></li>
+<li><p>Leyendas si hay varias series.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="exportar-tablas-con-pandas">
+<h3>Exportar tablas con pandas<a class="headerlink" href="#exportar-tablas-con-pandas" title="Link to this heading"></a></h3>
+<p>Podemos exportar tablas resumen a distintos formatos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tabla resumen</span>
+<span class="n">tabla_resumen</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;categoria&quot;</span><span class="p">)[</span><span class="s2">&quot;valor&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">])</span>
+<span class="n">tabla_resumen</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;results/tabla_resumen.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># También a Excel</span>
+<span class="n">tabla_resumen</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;results/tabla_resumen.xlsx&quot;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Resumen&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>En informes:</p>
+<ul class="simple">
+<li><p>Incluir solo las <strong>tablas clave</strong>.</p></li>
+<li><p>Evitar tablas enormes; para detalles, usar anexos o archivos adjuntos (CSV/Excel).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="de-notebooks-a-html-pdf">
+<h2>De Notebooks a HTML/PDF<a class="headerlink" href="#de-notebooks-a-html-pdf" title="Link to this heading"></a></h2>
+<p>Una ventaja de Jupyter es que podemos convertir un notebook en un <strong>documento estático</strong> (HTML, PDF) sin esfuerzo manual.</p>
+<section id="conversion-con-la-interfaz-de-jupyter-colab">
+<h3>Conversión con la interfaz de Jupyter / Colab<a class="headerlink" href="#conversion-con-la-interfaz-de-jupyter-colab" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>En Jupyter clásico:<br />
+<code class="docutils literal notranslate"><span class="pre">File</span></code> → <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">as</span></code> → <code class="docutils literal notranslate"><span class="pre">HTML</span> <span class="pre">(.html)</span></code> o <code class="docutils literal notranslate"><span class="pre">PDF</span> <span class="pre">via</span> <span class="pre">LaTeX</span></code>.</p></li>
+<li><p>En Google Colab:<br />
+<code class="docutils literal notranslate"><span class="pre">File</span></code> → <code class="docutils literal notranslate"><span class="pre">Download</span></code> → <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code> o “Print” para generar PDF.</p></li>
+</ul>
+</section>
+<section id="conversion-con-nbconvert-linea-de-comandos">
+<h3>Conversión con nbconvert (línea de comandos)<a class="headerlink" href="#conversion-con-nbconvert-linea-de-comandos" title="Link to this heading"></a></h3>
+<p>Si trabajas localmente:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>nbconvert<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--to<span class="w"> </span>html<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output<span class="w"> </span>informe_eda.html<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>notebooks/eda_calidad_aire.ipynb
+</pre></div>
+</div>
+<p>Para PDF (requiere tener LaTeX instalado):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>nbconvert<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--to<span class="w"> </span>pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output<span class="w"> </span>informe_eda.pdf<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>notebooks/eda_calidad_aire.ipynb
+</pre></div>
+</div>
+<p>Buenas prácticas antes de exportar:</p>
+<ul class="simple">
+<li><p>Ejecutar <strong>todo el notebook de arriba a abajo</strong> (<code class="docutils literal notranslate"><span class="pre">Restart</span> <span class="pre">&amp;</span> <span class="pre">Run</span> <span class="pre">All</span></code>) para asegurar reproducibilidad.</p></li>
+<li><p>Limpiar celdas innecesarias (pruebas, salidas muy largas).</p></li>
+<li><p>Comprobar que no quedan <strong>errores</strong> en celdas.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="buenas-practicas-de-documentacion-de-codigo-y-analisis">
+<h2>Buenas prácticas de documentación de código y análisis<a class="headerlink" href="#buenas-practicas-de-documentacion-de-codigo-y-analisis" title="Link to this heading"></a></h2>
+<p>Para que tu trabajo lo entienda otra persona (o tú mismo en unas semanas), conviene:</p>
+<section id="comentarios-y-nombres-claros">
+<h3>Comentarios y nombres claros<a class="headerlink" href="#comentarios-y-nombres-claros" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Usar <strong>nombres descriptivos</strong> para variables y funciones:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_clientes</span></code>, <code class="docutils literal notranslate"><span class="pre">media_propina</span></code>, <code class="docutils literal notranslate"><span class="pre">predicciones_test</span></code>…</p></li>
+</ul>
+</li>
+<li><p>Añadir comentarios breves donde la lógica no sea obvia:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filtramos solo clientes activos en 2024</span>
+<span class="n">df_activos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;anio&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2024</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="separar-celdas-logicas">
+<h3>Separar celdas lógicas<a class="headerlink" href="#separar-celdas-logicas" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Una celda = una “idea”:</p>
+<ul>
+<li><p>Cargar datos.</p></li>
+<li><p>Limpieza básica.</p></li>
+<li><p>Visualización concreta.</p></li>
+</ul>
+</li>
+<li><p>Evitar celdas enormes con muchos pasos mezclados.</p></li>
+</ul>
+</section>
+<section id="documentar-decisiones">
+<h3>Documentar decisiones<a class="headerlink" href="#documentar-decisiones" title="Link to this heading"></a></h3>
+<p>Usar Markdown para justificar:</p>
+<ul class="simple">
+<li><p>Por qué se eliminan ciertas filas o columnas.</p></li>
+<li><p>Por qué se elige una métrica en lugar de otra.</p></li>
+<li><p>Supuestos importantes (por ejemplo, “ignoramos valores anteriores a 2010 por cambios en el sistema de medición”).</p></li>
+</ul>
+<p>Ejemplo (celda Markdown):</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">### Decisión: tratar valores por encima de 500 como outliers</span>
+
+Los sensores tienen un rango máximo de 500. Cualquier valor por encima probablemente
+se deba a errores de calibración, por lo que se recortan a 500 (winsorización).
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="introduccion-a-streamlit-opcional">
+<h2>Introducción a Streamlit (opcional)<a class="headerlink" href="#introduccion-a-streamlit-opcional" title="Link to this heading"></a></h2>
+<p><strong>Streamlit</strong> permite convertir scripts de Python en <strong>aplicaciones web interactivas</strong> de forma muy sencilla. Es útil para:</p>
+<ul class="simple">
+<li><p>Crear pequeños <strong>dashboards</strong>.</p></li>
+<li><p>Permitir que usuarios no técnicos exploren modelos o resultados.</p></li>
+</ul>
+<section id="instalacion">
+<h3>Instalación<a class="headerlink" href="#instalacion" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>streamlit
+</pre></div>
+</div>
+</section>
+<section id="ejemplo-minimo-de-app">
+<h3>Ejemplo mínimo de app<a class="headerlink" href="#ejemplo-minimo-de-app" title="Link to this heading"></a></h3>
+<p>Crea un archivo <code class="docutils literal notranslate"><span class="pre">app.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Dashboard simple de propinas&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Vista previa de los datos:&quot;</span><span class="p">)</span>
+<span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="n">variable</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">selectbox</span><span class="p">(</span><span class="s2">&quot;Elige una variable numérica&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">])</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Histograma de </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<span class="n">st</span><span class="o">.</span><span class="n">bar_chart</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Ejecutar la app:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit<span class="w"> </span>run<span class="w"> </span>app.py
+</pre></div>
+</div>
+<p>Esto abrirá una ventana en el navegador con:</p>
+<ul class="simple">
+<li><p>Un título.</p></li>
+<li><p>Una tabla interactiva.</p></li>
+<li><p>Un selector de variable y un gráfico que cambia según la selección.</p></li>
+</ul>
+<p>Aunque Streamlit es opcional en este curso, ofrece una vía directa para <strong>presentar resultados de forma interactiva</strong> sin tener que desarrollar una web desde cero.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ejercicios-sugeridos">
+<h2>Ejercicios sugeridos<a class="headerlink" href="#ejercicios-sugeridos" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Informe de EDA</strong>:</p>
+<ul class="simple">
+<li><p>Tomar un dataset (por ejemplo, calidad del aire, viviendas, tips).</p></li>
+<li><p>Crear un notebook estructurado como informe:</p>
+<ul>
+<li><p>Introducción y objetivos.</p></li>
+<li><p>Descripción de datos.</p></li>
+<li><p>EDA visual (gráficos de distribución y relaciones).</p></li>
+<li><p>Conclusiones principales.</p></li>
+</ul>
+</li>
+<li><p>Usar títulos Markdown y texto explicativo.</p></li>
+</ul>
+</li>
+<li><p><strong>Exportar notebook a HTML</strong>:</p>
+<ul class="simple">
+<li><p>Asegurarse de que el notebook se ejecuta de principio a fin sin errores.</p></li>
+<li><p>Exportarlo a formato <strong>HTML</strong> (desde la interfaz o con <code class="docutils literal notranslate"><span class="pre">nbconvert</span></code>).</p></li>
+<li><p>Verificar que los gráficos y tablas se ven correctamente en el HTML generado.</p></li>
+</ul>
+</li>
+<li><p><strong>Exportación de gráficos y tablas</strong>:</p>
+<ul class="simple">
+<li><p>Guardar al menos:</p>
+<ul>
+<li><p>Un gráfico en <code class="docutils literal notranslate"><span class="pre">.png</span></code> y <code class="docutils literal notranslate"><span class="pre">.pdf</span></code>.</p></li>
+<li><p>Una tabla resumen en <code class="docutils literal notranslate"><span class="pre">.csv</span></code> o <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Insertar el gráfico en un documento (por ejemplo, un informe en Word, LaTeX o Markdown).</p></li>
+</ul>
+</li>
+<li><p><strong>(Opcional) Mini‑dashboard con Streamlit</strong>:</p>
+<ul class="simple">
+<li><p>Crear una pequeña app que:</p>
+<ul>
+<li><p>Cargue un dataset.</p></li>
+<li><p>Permita seleccionar una variable numérica y muestre un gráfico (histograma, boxplot, etc.).</p></li>
+</ul>
+</li>
+<li><p>Ejecutar la app localmente y explorarla.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="conclusiones-de-la-sesion">
+<h2>Conclusiones de la sesión<a class="headerlink" href="#conclusiones-de-la-sesion" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>La <strong>comunicación de resultados</strong> es una parte esencial del trabajo en análisis de datos.</p></li>
+<li><p>Un buen informe combina:</p>
+<ul>
+<li><p>Estructura clara.</p></li>
+<li><p>Texto explicativo.</p></li>
+<li><p>Gráficos y tablas bien seleccionados y legibles.</p></li>
+</ul>
+</li>
+<li><p>Los notebooks permiten crear análisis <strong>reproducibles</strong> que luego podemos exportar a HTML o PDF.</p></li>
+<li><p>Las <strong>buenas prácticas de documentación</strong> (nombres claros, comentarios, decisiones justificadas) facilitan la colaboración y el mantenimiento.</p></li>
+<li><p>Herramientas como <strong>Streamlit</strong> permiten dar un paso más y convertir análisis en <strong>aplicaciones interactivas</strong>, acercando los resultados a usuarios no técnicos.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

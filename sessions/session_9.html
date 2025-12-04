@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión 9 (Bonus) — Control de versiones con Git &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SIQ025 — Programari Professional d'Anàlisi de Dades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="session_1.html">Sesión 1 — Introducción al Análisis de Datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_2.html">Sesión 2 — Importación y manipulación de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_3.html">Sesión 3 — Limpieza de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_4.html">Sesión 4 — Preprocesamiento y transformación de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_5.html">Sesión 5 — Visualización de datos (Parte 1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_6.html">Sesión 6 — Visualización de datos (Parte 2)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SIQ025 — Programari Professional d'Anàlisi de Dades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sesión 9 (Bonus) — Control de versiones con Git</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sessions/session_9.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sesion-9-bonus-control-de-versiones-con-git">
+<h1>Sesión 9 (Bonus) — Control de versiones con Git<a class="headerlink" href="#sesion-9-bonus-control-de-versiones-con-git" title="Link to this heading"></a></h1>
+<section id="objetivos">
+<h2>Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading"></a></h2>
+<p>En esta sesión introductoria veremos cómo usar <strong>Git</strong> para versionar proyectos de análisis de datos.</p>
+<p>Al finalizar la sesión, serás capaz de:</p>
+<ul class="simple">
+<li><p>Entender qué es el <strong>control de versiones</strong> y por qué es clave para la <strong>reproducibilidad</strong>.</p></li>
+<li><p>Crear y utilizar un <strong>repositorio local</strong> con Git.</p></li>
+<li><p>Registrar cambios mediante <strong>commits</strong> y revisar el <strong>historial</strong>.</p></li>
+<li><p>Usar los comandos básicos de Git en el contexto de proyectos de datos.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="introduccion-versionado-y-reproducibilidad">
+<h2>Introducción: versionado y reproducibilidad<a class="headerlink" href="#introduccion-versionado-y-reproducibilidad" title="Link to this heading"></a></h2>
+<p>A lo largo del curso has trabajado con:</p>
+<ul class="simple">
+<li><p>Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) con código, gráficos y texto.</p></li>
+<li><p>Datos (<code class="docutils literal notranslate"><span class="pre">data/</span></code>), resultados (<code class="docutils literal notranslate"><span class="pre">results/</span></code>), scripts (<code class="docutils literal notranslate"><span class="pre">src/</span></code>).</p></li>
+<li><p>Pipelines de preprocesamiento y modelos.</p></li>
+</ul>
+<p>Para que un proyecto sea <strong>reproducible</strong> y fácil de mantener, no basta con guardar archivos sueltos:</p>
+<ul class="simple">
+<li><p>Necesitamos saber <strong>qué cambió, cuándo y por qué</strong>.</p></li>
+<li><p>Necesitamos poder <strong>volver atrás</strong> si algo se rompe.</p></li>
+<li><p>Necesitamos compartir el proyecto con otras personas sin perder el historial.</p></li>
+</ul>
+<p>Aquí entra Git, un <strong>sistema de control de versiones</strong> que nos permite:</p>
+<ul class="simple">
+<li><p>Guardar “fotografías” del estado del proyecto (commits).</p></li>
+<li><p>Comparar versiones.</p></li>
+<li><p>Trabajar en equipo sin pisarnos el trabajo.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="concepto-basico-repositorios-commits-e-historial">
+<h2>Concepto básico: repositorios, commits e historial<a class="headerlink" href="#concepto-basico-repositorios-commits-e-historial" title="Link to this heading"></a></h2>
+<section id="repositorio">
+<h3>Repositorio<a class="headerlink" href="#repositorio" title="Link to this heading"></a></h3>
+<p>Un <strong>repositorio Git</strong> es una carpeta de proyecto con un historial de cambios asociado.</p>
+<ul class="simple">
+<li><p>Normalmente coincide con la raíz de tu proyecto:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">data/</span></code>, <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code>, <code class="docutils literal notranslate"><span class="pre">src/</span></code>, <code class="docutils literal notranslate"><span class="pre">results/</span></code>, etc.</p></li>
+</ul>
+</li>
+<li><p>Git guarda su información en una subcarpeta oculta llamada <code class="docutils literal notranslate"><span class="pre">.git</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_project/
+├── data/
+├── notebooks/
+├── src/
+├── results/
+└── **.git/**
+</pre></div>
+</div>
+</section>
+<section id="commits">
+<h3>Commits<a class="headerlink" href="#commits" title="Link to this heading"></a></h3>
+<p>Un <strong>commit</strong> es como una “foto” del estado de tus archivos en un momento concreto, junto con:</p>
+<ul class="simple">
+<li><p>Un identificador único.</p></li>
+<li><p>Un <strong>mensaje</strong> descriptivo.</p></li>
+<li><p>La información de autor y fecha.</p></li>
+</ul>
+<p>Ejemplo de mensajes de commit:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Añade</span> <span class="pre">EDA</span> <span class="pre">inicial</span> <span class="pre">de</span> <span class="pre">calidad</span> <span class="pre">del</span> <span class="pre">aire</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Corrige</span> <span class="pre">imputación</span> <span class="pre">de</span> <span class="pre">valores</span> <span class="pre">perdidos</span> <span class="pre">en</span> <span class="pre">columna</span> <span class="pre">PM10</span></code></p></li>
+</ul>
+</section>
+<section id="historial">
+<h3>Historial<a class="headerlink" href="#historial" title="Link to this heading"></a></h3>
+<p>El <strong>historial de commits</strong> te permite:</p>
+<ul class="simple">
+<li><p>Ver la evolución del proyecto.</p></li>
+<li><p>Saber qué cambió entre versiones.</p></li>
+<li><p>Recuperar un estado anterior si algo sale mal.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="crear-y-preparar-un-repositorio-local">
+<h2>Crear y preparar un repositorio local<a class="headerlink" href="#crear-y-preparar-un-repositorio-local" title="Link to this heading"></a></h2>
+<p>Supongamos que tu proyecto está en:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/Users/aalcacer/siq025/
+</pre></div>
+</div>
+<section id="inicializar-un-repositorio">
+<h3>Inicializar un repositorio<a class="headerlink" href="#inicializar-un-repositorio" title="Link to this heading"></a></h3>
+<p>En la terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/Users/aalcacer/siq025
+git<span class="w"> </span>init
+</pre></div>
+</div>
+<p>Esto crea la carpeta oculta <code class="docutils literal notranslate"><span class="pre">.git</span></code> y convierte el directorio actual en un repositorio Git.</p>
+</section>
+<section id="comprobar-el-estado">
+<h3>Comprobar el estado<a class="headerlink" href="#comprobar-el-estado" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+<p>Muestra:</p>
+<ul class="simple">
+<li><p>Archivos no rastreados (new files).</p></li>
+<li><p>Archivos modificados.</p></li>
+<li><p>Archivos listos para commit (staged).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="flujo-basico-add-commit-log">
+<h2>Flujo básico: add → commit → log<a class="headerlink" href="#flujo-basico-add-commit-log" title="Link to this heading"></a></h2>
+<section id="anadir-archivos-al-area-de-preparacion-staging-area">
+<h3>1. Añadir archivos al área de preparación (staging area)<a class="headerlink" href="#anadir-archivos-al-area-de-preparacion-staging-area" title="Link to this heading"></a></h3>
+<p>Primero decidimos qué cambios queremos incluir en el próximo commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Añadir un archivo concreto</span>
+git<span class="w"> </span>add<span class="w"> </span>README.md
+
+<span class="c1"># Añadir varios archivos</span>
+git<span class="w"> </span>add<span class="w"> </span>notebooks/eda_calidad_aire.ipynb<span class="w"> </span>src/preprocesamiento.py
+
+<span class="c1"># Añadir todos los cambios (con cuidado)</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="crear-un-commit">
+<h3>2. Crear un commit<a class="headerlink" href="#crear-un-commit" title="Link to this heading"></a></h3>
+<p>Una vez añadidos los archivos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Añade edición inicial del README con descripción del proyecto&quot;</span>
+</pre></div>
+</div>
+<p>Recomendaciones para mensajes:</p>
+<ul class="simple">
+<li><p>Ser <strong>breve pero descriptivo</strong>.</p></li>
+<li><p>Escribir en <strong>imperativo</strong> corto (“Añade”, “Corrige”, “Refactoriza”…).</p></li>
+</ul>
+</section>
+<section id="ver-el-historial">
+<h3>3. Ver el historial<a class="headerlink" href="#ver-el-historial" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+</pre></div>
+</div>
+<p>Salida típica:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>commit 1a2b3c4d...
+Author: Tu Nombre &lt;tu.email@example.com&gt;
+Date:   2025-01-10 10:15:32 +0100
+
+    Añade edición inicial del README con descripción del proyecto
+
+commit 9f8e7d6c...
+Author: Tu Nombre &lt;tu.email@example.com&gt;
+Date:   2025-01-09 18:02:10 +0100
+
+    Crea estructura inicial del proyecto
+</pre></div>
+</div>
+<p>Para un historial más compacto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph<span class="w"> </span>--decorate
+</pre></div>
+</div>
+<p>Esto permite ver de un vistazo la secuencia de commits y facilita la navegación por el historial.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="comandos-basicos-que-usaras-todo-el-tiempo">
+<h2>Comandos básicos que usarás todo el tiempo<a class="headerlink" href="#comandos-basicos-que-usaras-todo-el-tiempo" title="Link to this heading"></a></h2>
+<section id="git-status">
+<h3><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code><a class="headerlink" href="#git-status" title="Link to this heading"></a></h3>
+<p>Para ver el estado actual del repositorio:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Archivos no rastreados (en rojo).</p></li>
+<li><p>Archivos modificados.</p></li>
+<li><p>Archivos en staging listos para commit (en verde).</p></li>
+</ul>
+</section>
+<section id="git-diff">
+<h3><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code><a class="headerlink" href="#git-diff" title="Link to this heading"></a></h3>
+<p>Para ver qué ha cambiado:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Diferencias sin preparar aún (working directory vs última versión)</span>
+git<span class="w"> </span>diff
+
+<span class="c1"># Diferencias ya preparadas (staged) para commit</span>
+git<span class="w"> </span>diff<span class="w"> </span>--cached
+</pre></div>
+</div>
+<p>Muy útil para revisar cambios antes de confirmar un commit.</p>
+</section>
+<section id="git-log">
+<h3><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code><a class="headerlink" href="#git-log" title="Link to this heading"></a></h3>
+<p>Como hemos visto, muestra el historial. Puedes combinar con opciones:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph<span class="w"> </span>--all
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ignorar-archivos-innecesarios-gitignore">
+<h2>Ignorar archivos innecesarios: .gitignore<a class="headerlink" href="#ignorar-archivos-innecesarios-gitignore" title="Link to this heading"></a></h2>
+<p>En proyectos de datos <strong>no queremos</strong> versionar:</p>
+<ul class="simple">
+<li><p>Archivos temporales.</p></li>
+<li><p>Resultados generados que se pueden volver a calcular.</p></li>
+<li><p>Archivos grandes (datasets originales, si son muy pesados o sensibles).</p></li>
+</ul>
+<p>Para eso usamos un archivo llamado <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> en la raíz del proyecto:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># .gitignore (ejemplo)
+data/raw/
+data/*.csv
+results/
+*.log
+.ipynb_checkpoints/
+__pycache__/
+.env
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Cada línea indica un patrón a ignorar.</p></li>
+<li><p>Esto evita que estos archivos aparezcan en <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> o se añadan por error.</p></li>
+</ul>
+<p>En análisis de datos es común:</p>
+<ul class="simple">
+<li><p>Versionar <strong>scripts, notebooks, notebooks “limpios” e informes</strong>.</p></li>
+<li><p>No versionar datasets muy pesados ni datos confidenciales.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="opcional-conectar-con-un-repositorio-remoto">
+<h2>(Opcional) Conectar con un repositorio remoto<a class="headerlink" href="#opcional-conectar-con-un-repositorio-remoto" title="Link to this heading"></a></h2>
+<p>Aunque esta sesión se centra en repositorios locales, es útil conocer la idea:</p>
+<ul class="simple">
+<li><p>Un <strong>repositorio remoto</strong> (por ejemplo, en GitHub/GitLab) permite:</p>
+<ul>
+<li><p>Copia de seguridad.</p></li>
+<li><p>Colaboración.</p></li>
+<li><p>Publicar código.</p></li>
+</ul>
+</li>
+</ul>
+<section id="clonar-un-repositorio-existente">
+<h3>Clonar un repositorio existente<a class="headerlink" href="#clonar-un-repositorio-existente" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/usuario/mi-proyecto.git
+</pre></div>
+</div>
+</section>
+<section id="enviar-cambios-a-un-remoto-push">
+<h3>Enviar cambios a un remoto (push)<a class="headerlink" href="#enviar-cambios-a-un-remoto-push" title="Link to this heading"></a></h3>
+<p>Tras configurar el remoto:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ver remotos configurados</span>
+git<span class="w"> </span>remote<span class="w"> </span>-v
+
+<span class="c1"># Enviar commits locales a la rama principal (main o master)</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<p>Estos pasos ya dependen más de la plataforma (GitHub, GitLab…), pero la idea general es:</p>
+<ol class="arabic simple">
+<li><p>Hacer commits localmente.</p></li>
+<li><p>Sincronizar con el remoto mediante <code class="docutils literal notranslate"><span class="pre">push</span></code> (y <code class="docutils literal notranslate"><span class="pre">pull</span></code> para traer cambios).</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="como-se-relaciona-git-con-todo-lo-visto-en-el-curso">
+<h2>Cómo se relaciona Git con todo lo visto en el curso<a class="headerlink" href="#como-se-relaciona-git-con-todo-lo-visto-en-el-curso" title="Link to this heading"></a></h2>
+<p>Git encaja naturalmente con el flujo de análisis de datos:</p>
+<ul class="simple">
+<li><p><strong>Sesión 1–2</strong>: Estructura de proyecto y primeros notebooks.</p>
+<ul>
+<li><p>Commits para:</p>
+<ul>
+<li><p>“Crea estructura inicial del proyecto”.</p></li>
+<li><p>“Añade notebook de introducción a pandas”.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Sesión 3–4</strong>: Limpieza y preprocesamiento.</p>
+<ul>
+<li><p>Commits para:</p>
+<ul>
+<li><p>“Implementa limpieza de valores perdidos y outliers”.</p></li>
+<li><p>“Añade pipeline de preprocesamiento con escalado y codificación”.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Sesión 5–6</strong>: Visualización.</p>
+<ul>
+<li><p>Commits para:</p>
+<ul>
+<li><p>“Crea EDA visual de dataset de viviendas”.</p></li>
+<li><p>“Añade visualizaciones multivariables con FacetGrid y PairGrid”.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Sesión 7</strong>: Modelización.</p>
+<ul>
+<li><p>Commits para:</p>
+<ul>
+<li><p>“Entrena modelos de regresión y clasificación con validación cruzada”.</p></li>
+<li><p>“Aplica K-Means para segmentación de clientes”.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Sesión 8</strong>: Informes y comunicación.</p>
+<ul>
+<li><p>Commits para:</p>
+<ul>
+<li><p>“Prepara informe HTML de EDA”.</p></li>
+<li><p>“Añade notebook final con resultados y conclusiones”.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>De este modo, puedes:</p>
+<ul class="simple">
+<li><p>Volver a versiones intermedias si un cambio rompe algo.</p></li>
+<li><p>Ver cómo ha evolucionado tu enfoque.</p></li>
+<li><p>Compartir el proyecto con otras personas que puedan reproducir y revisar el trabajo.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ejercicios-sugeridos">
+<h2>Ejercicios sugeridos<a class="headerlink" href="#ejercicios-sugeridos" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Inicializar un repositorio local</strong>:</p>
+<ul class="simple">
+<li><p>En la carpeta de tu proyecto del curso (<code class="docutils literal notranslate"><span class="pre">/Users/aalcacer/siq025</span></code> o similar).</p></li>
+<li><p>Ejecutar <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>.</p></li>
+<li><p>Crear un primer commit con la estructura básica y alguna sesión.</p></li>
+</ul>
+</li>
+<li><p><strong>Practicar el flujo básico</strong>:</p>
+<ul class="simple">
+<li><p>Modificar un notebook o una sesión (por ejemplo, añadir una gráfica nueva).</p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> para ver los cambios.</p></li>
+<li><p>Hacer <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> de los archivos relevantes.</p></li>
+<li><p>Crear un commit con un mensaje descriptivo.</p></li>
+</ul>
+</li>
+<li><p><strong>Revisar historial y diferencias</strong>:</p>
+<ul class="simple">
+<li><p>Ejecutar <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> y <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--oneline</span></code>.</p></li>
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> para ver las diferencias entre la versión actual y el último commit.</p></li>
+</ul>
+</li>
+<li><p><strong>Configurar un <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></strong>:</p>
+<ul class="simple">
+<li><p>Crear un archivo <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> en la raíz del proyecto.</p></li>
+<li><p>Añadir patrones para ignorar:</p>
+<ul>
+<li><p>Directorios de <code class="docutils literal notranslate"><span class="pre">results/</span></code>, <code class="docutils literal notranslate"><span class="pre">data/raw/</span></code>, <code class="docutils literal notranslate"><span class="pre">.ipynb_checkpoints/</span></code>, etc.</p></li>
+</ul>
+</li>
+<li><p>Verificar con <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> que estos archivos ya no aparecen como cambios.</p></li>
+</ul>
+</li>
+<li><p><strong>(Opcional) Subir el proyecto a GitHub/GitLab</strong>:</p>
+<ul class="simple">
+<li><p>Crear un repositorio vacío en GitHub/GitLab.</p></li>
+<li><p>Añadirlo como remoto (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span> <span class="pre">...</span></code>).</p></li>
+<li><p>Hacer <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> para subir tus commits.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="conclusiones-de-la-sesion">
+<h2>Conclusiones de la sesión<a class="headerlink" href="#conclusiones-de-la-sesion" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Git es una herramienta fundamental para <strong>versionar</strong> proyectos de análisis de datos y garantizar la <strong>reproducibilidad</strong>.</p></li>
+<li><p>El flujo básico (<code class="docutils literal notranslate"><span class="pre">status</span></code> → <code class="docutils literal notranslate"><span class="pre">add</span></code> → <code class="docutils literal notranslate"><span class="pre">commit</span></code> → <code class="docutils literal notranslate"><span class="pre">log</span></code>) cubre la mayoría de necesidades en proyectos individuales.</p></li>
+<li><p>Un buen uso de <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> evita versionar archivos temporales o datos pesados/sensibles.</p></li>
+<li><p>Integrar Git desde el inicio del proyecto facilita:</p>
+<ul>
+<li><p>Volver a estados anteriores.</p></li>
+<li><p>Entender la evolución del análisis.</p></li>
+<li><p>Colaborar con otras personas o compartir tu trabajo.</p></li>
+</ul>
+</li>
+<li><p>Aunque esta sesión es un bonus, dominar estos conceptos te acerca a la forma de trabajar en <strong>proyectos profesionales</strong> de ciencia de datos y desarrollo de software.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

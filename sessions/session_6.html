@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesión 6 — Visualización de datos (Parte 2) &mdash; SIQ025 — Programari Professional d&#39;Anàlisi de Dades  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SIQ025 — Programari Professional d'Anàlisi de Dades
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sesiones</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="session_1.html">Sesión 1 — Introducción al Análisis de Datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_2.html">Sesión 2 — Importación y manipulación de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_3.html">Sesión 3 — Limpieza de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_4.html">Sesión 4 — Preprocesamiento y transformación de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="session_5.html">Sesión 5 — Visualización de datos (Parte 1)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SIQ025 — Programari Professional d'Anàlisi de Dades</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sesión 6 — Visualización de datos (Parte 2)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sessions/session_6.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sesion-6-visualizacion-de-datos-parte-2">
+<h1>Sesión 6 — Visualización de datos (Parte 2)<a class="headerlink" href="#sesion-6-visualizacion-de-datos-parte-2" title="Link to this heading"></a></h1>
+<section id="objetivos">
+<h2>Objetivos<a class="headerlink" href="#objetivos" title="Link to this heading"></a></h2>
+<p>En esta sesión daremos un paso más en visualización de datos, centrándonos en gráficos <strong>multivariables</strong> y en la preparación de visualizaciones listas para informes.</p>
+<p>Al finalizar la sesión, serás capaz de:</p>
+<ul class="simple">
+<li><p>Crear <strong>visualizaciones multivariables complejas</strong> usando faceting (<code class="docutils literal notranslate"><span class="pre">FacetGrid</span></code>, <code class="docutils literal notranslate"><span class="pre">PairGrid</span></code>) y combinaciones de gráficos.</p></li>
+<li><p>Utilizar <strong>violin plots</strong> y otras extensiones avanzadas para comparar distribuciones.</p></li>
+<li><p>Diseñar <strong>gráficos orientados a comunicar resultados</strong> de análisis.</p></li>
+<li><p>Explorar la <strong>visualización interactiva</strong> con Plotly (opcional).</p></li>
+<li><p><strong>Exportar gráficos</strong> con calidad profesional para informes y presentaciones.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading"></a></h2>
+<p>En la sesión anterior vimos cómo representar:</p>
+<ul class="simple">
+<li><p>Distribuciones (histogramas, densidad, boxplots).</p></li>
+<li><p>Relaciones simples entre dos variables (scatterplots).</p></li>
+<li><p>Correlaciones con mapas de calor.</p></li>
+</ul>
+<p>En esta sesión queremos acercarnos más a lo que ocurre en proyectos reales:</p>
+<ul class="simple">
+<li><p>Explorar <strong>varias variables a la vez</strong> (por ejemplo, cómo cambia una relación según el día de la semana y el sexo).</p></li>
+<li><p>Crear gráficos pensados para un <strong>informe</strong> o una <strong>presentación</strong>.</p></li>
+<li><p>Dar un vistazo a la visualización <strong>interactiva</strong>, útil para dashboards y exploración.</p></li>
+</ul>
+<p>Trabajaremos principalmente con <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> y, de forma opcional, con <code class="docutils literal notranslate"><span class="pre">plotly.express</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="preparacion-librerias-y-dataset-de-ejemplo">
+<h2>Preparación: librerías y dataset de ejemplo<a class="headerlink" href="#preparacion-librerias-y-dataset-de-ejemplo" title="Link to this heading"></a></h2>
+<p>Usaremos de nuevo el dataset <code class="docutils literal notranslate"><span class="pre">tips</span></code> de seaborn, que ya conoces de la sesión anterior.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Columnas relevantes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">total_bill</span></code>: total de la cuenta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tip</span></code>: propina.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sex</span></code>, <code class="docutils literal notranslate"><span class="pre">smoker</span></code>, <code class="docutils literal notranslate"><span class="pre">day</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, etc.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="faceting-y-visualizacion-multivariable-facetgrid-relplot-pairgrid">
+<h2>Faceting y visualización multivariable (FacetGrid, relplot, PairGrid)<a class="headerlink" href="#faceting-y-visualizacion-multivariable-facetgrid-relplot-pairgrid" title="Link to this heading"></a></h2>
+<section id="que-es-el-faceting">
+<h3>¿Qué es el faceting?<a class="headerlink" href="#que-es-el-faceting" title="Link to this heading"></a></h3>
+<p>El <strong>faceting</strong> consiste en dividir un gráfico en <strong>subgráficos (facetas)</strong> según una o más variables categóricas.<br />
+Ejemplos:</p>
+<ul class="simple">
+<li><p>Un scatterplot de <code class="docutils literal notranslate"><span class="pre">total_bill</span></code> vs <code class="docutils literal notranslate"><span class="pre">tip</span></code>, separado por día.</p></li>
+<li><p>Histogramas de una variable, uno por cada categoría de otra variable.</p></li>
+</ul>
+<p>Esto permite ver <strong>cómo cambia un patrón</strong> en distintos subgrupos.</p>
+</section>
+<section id="facetgrid-basico">
+<h3>FacetGrid básico<a class="headerlink" href="#facetgrid-basico" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s2">&quot;Total de la cuenta&quot;</span><span class="p">,</span> <span class="s2">&quot;Propina&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Relación total_bill vs tip por día&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Explicación:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">col=&quot;day&quot;</span></code> → una columna de facetas por cada día.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">map_dataframe</span></code> aplica <code class="docutils literal notranslate"><span class="pre">sns.scatterplot</span></code> sobre cada subconjunto de datos.</p></li>
+</ul>
+<p>Podemos facetear por filas y columnas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;smoker&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s2">&quot;Total de la cuenta&quot;</span><span class="p">,</span> <span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribución de total_bill por time y smoker&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="atajos-con-relplot-y-otros">
+<h3>Atajos con <code class="docutils literal notranslate"><span class="pre">relplot</span></code> y otros<a class="headerlink" href="#atajos-con-relplot-y-otros" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">sns.relplot</span></code> es un atajo que crea un <code class="docutils literal notranslate"><span class="pre">FacetGrid</span></code> internamente:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;scatter&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kind=&quot;scatter&quot;</span></code> → scatterplot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hue=&quot;sex&quot;</span></code> → color por sexo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">col=&quot;day&quot;</span></code> → una columna de facetas por día.</p></li>
+</ul>
+</section>
+<section id="pairgrid-y-pairplot">
+<h3>PairGrid y pairplot<a class="headerlink" href="#pairgrid-y-pairplot" title="Link to this heading"></a></h3>
+<p>Para explorar <strong>todas las combinaciones de variables numéricas</strong> podemos usar <code class="docutils literal notranslate"><span class="pre">pairplot</span></code> (atajo de <code class="docutils literal notranslate"><span class="pre">PairGrid</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">],</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+    <span class="n">diag_kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Interpretación:</p>
+<ul class="simple">
+<li><p>Diagonal: distribuciones de cada variable.</p></li>
+<li><p>Fuera de la diagonal: scatterplots entre pares de variables.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hue=&quot;sex&quot;</span></code> permite ver diferencias por grupo.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="violin-plots-y-combinaciones-avanzadas">
+<h2>Violin plots y combinaciones avanzadas<a class="headerlink" href="#violin-plots-y-combinaciones-avanzadas" title="Link to this heading"></a></h2>
+<p>Los <strong>violin plots</strong> combinan la idea del boxplot con una estimación suave de la densidad (KDE). Son útiles para comparar distribuciones entre grupos de manera más detallada.</p>
+<section id="violin-plot-basico">
+<h3>Violin plot básico<a class="headerlink" href="#violin-plot-basico" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de total_bill por día (violin plot)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Interpretación:</p>
+<ul class="simple">
+<li><p>La “forma” del violín indica dónde se concentran más los valores.</p></li>
+<li><p>Se puede ver si la distribución es unimodal, bimodal, etc.</p></li>
+</ul>
+</section>
+<section id="combinar-violin-plot-y-boxplot">
+<h3>Combinar violin plot y boxplot<a class="headerlink" href="#combinar-violin-plot-y-boxplot" title="Link to this heading"></a></h3>
+<p>Podemos combinarlo con un <strong>boxplot</strong> o <strong>swarmplot</strong> para ver puntos individuales:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>          <span class="c1"># quitamos resumen interno</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Violin + Boxplot de total_bill por día&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>O con <code class="docutils literal notranslate"><span class="pre">swarmplot</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Violin + puntos individuales de total_bill por día&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Esta combinación es muy útil para <strong>comunicar resultados</strong>: se ve la forma global y también cada observación.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="graficos-para-comunicar-resultados-de-analisis">
+<h2>Gráficos para comunicar resultados de análisis<a class="headerlink" href="#graficos-para-comunicar-resultados-de-analisis" title="Link to this heading"></a></h2>
+<p>Hasta ahora nos hemos centrado en <strong>explorar</strong>.<br />
+Cuando queremos <strong>comunicar</strong> resultados (a profesores, clientes, equipo), conviene:</p>
+<ul class="simple">
+<li><p>Reducir el número de gráficos a los que realmente responden preguntas clave.</p></li>
+<li><p>Simplificar: menos es más.</p></li>
+<li><p>Cuidar:</p>
+<ul>
+<li><p>Título: debe explicar qué se ve.</p></li>
+<li><p>Ejes: nombres claros y unidades.</p></li>
+<li><p>Leyendas: evitar duplicar información.</p></li>
+<li><p>Notas o anotaciones: resaltar hallazgos importantes.</p></li>
+</ul>
+</li>
+</ul>
+<p>Ejemplo de gráfico “para informe”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span>
+    <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">},</span>
+    <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Relación entre total de la cuenta y propina&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Total de la cuenta ($)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Propina ($)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ideas:</p>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">regplot</span></code> para mostrar la tendencia.</p></li>
+<li><p>Ajustar <code class="docutils literal notranslate"><span class="pre">alpha</span></code> para que los puntos no saturen.</p></li>
+<li><p>Añadir comentarios en el texto del informe sobre:</p>
+<ul>
+<li><p>Si la relación es aproximadamente lineal.</p></li>
+<li><p>Si hay zonas donde la relación cambia.</p></li>
+<li><p>Outliers llamativos.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="visualizacion-interactiva-con-plotly-opcional">
+<h2>Visualización interactiva con Plotly (opcional)<a class="headerlink" href="#visualizacion-interactiva-con-plotly-opcional" title="Link to this heading"></a></h2>
+<p>Las visualizaciones interactivas permiten:</p>
+<ul class="simple">
+<li><p>Hacer zoom.</p></li>
+<li><p>Ver valores exactos al pasar el ratón.</p></li>
+<li><p>Activar/desactivar series.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">plotly.express</span></code> ofrece una API sencilla para crear gráficos interactivos en Jupyter.</p>
+<section id="instalacion-si-no-lo-tienes">
+<h3>Instalación (si no lo tienes)<a class="headerlink" href="#instalacion-si-no-lo-tienes" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>plotly
+</pre></div>
+</div>
+</section>
+<section id="ejemplo-basico-con-scatter-interactivo">
+<h3>Ejemplo básico con scatter interactivo<a class="headerlink" href="#ejemplo-basico-con-scatter-interactivo" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="s2">&quot;size&quot;</span><span class="p">,</span>
+    <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;smoker&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Relación total_bill vs tip (interactivo)&quot;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Notas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hover_data</span></code> muestra columnas adicionales al pasar el ratón.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code> controla el tamaño de los puntos según una variable numérica.</p></li>
+</ul>
+</section>
+<section id="histograma-interactivo">
+<h3>Histograma interactivo<a class="headerlink" href="#histograma-interactivo" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">barmode</span><span class="o">=</span><span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Distribución de total_bill por día (interactivo)&quot;</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>El uso de Plotly es opcional en la asignatura, pero útil si quieres explorar datos de forma más flexible o crear dashboards.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exportacion-de-graficos-de-calidad-profesional">
+<h2>Exportación de gráficos de calidad profesional<a class="headerlink" href="#exportacion-de-graficos-de-calidad-profesional" title="Link to this heading"></a></h2>
+<p>Una vez que tenemos gráficos útiles, necesitamos <strong>exportarlos</strong> para:</p>
+<ul class="simple">
+<li><p>Incluirlos en informes (Word, LaTeX, Markdown, PDF).</p></li>
+<li><p>Añadirlos a diapositivas (PowerPoint, Keynote).</p></li>
+</ul>
+<section id="exportar-con-matplotlib">
+<h3>Exportar con matplotlib<a class="headerlink" href="#exportar-con-matplotlib" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Propina por día de la semana&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Guardar en alta resolución</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;results/propina_por_dia.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;results/propina_por_dia.pdf&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Recomendaciones:</p>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">dpi=300</span></code> para impresión.</p></li>
+<li><p>Preferir formatos vectoriales (<code class="docutils literal notranslate"><span class="pre">.pdf</span></code>, <code class="docutils literal notranslate"><span class="pre">.svg</span></code>) cuando sea posible (para gráficos simples).</p></li>
+</ul>
+</section>
+<section id="exportar-con-plotly">
+<h3>Exportar con Plotly<a class="headerlink" href="#exportar-con-plotly" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Guardar como HTML interactivo</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_html</span><span class="p">(</span><span class="s2">&quot;results/scatter_total_bill_tip.html&quot;</span><span class="p">)</span>
+
+<span class="c1"># Para exportar a PNG/SVG puede ser necesario instalar kaleido:</span>
+<span class="c1"># pip install -U kaleido</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="s2">&quot;results/scatter_total_bill_tip.png&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Guardar como HTML es muy útil para compartir gráficos interactivos (por ejemplo, por correo o en una intranet).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ejercicios-sugeridos">
+<h2>Ejercicios sugeridos<a class="headerlink" href="#ejercicios-sugeridos" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Faceting</strong>:</p>
+<ul class="simple">
+<li><p>Crear un <code class="docutils literal notranslate"><span class="pre">FacetGrid</span></code> que muestre la relación entre dos variables numéricas (por ejemplo, <code class="docutils literal notranslate"><span class="pre">total_bill</span></code> y <code class="docutils literal notranslate"><span class="pre">tip</span></code>) facetada por una o dos variables categóricas (<code class="docutils literal notranslate"><span class="pre">day</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">smoker</span></code>).</p></li>
+<li><p>Interpretar qué cambia entre facetas.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualización multivariable</strong>:</p>
+<ul class="simple">
+<li><p>Usar <code class="docutils literal notranslate"><span class="pre">pairplot</span></code> o <code class="docutils literal notranslate"><span class="pre">PairGrid</span></code> para explorar varias variables numéricas de un dataset y comentar las relaciones más evidentes.</p></li>
+</ul>
+</li>
+<li><p><strong>Violin plots y combinaciones</strong>:</p>
+<ul class="simple">
+<li><p>Crear violin plots comparando una variable numérica entre grupos (por ejemplo, <code class="docutils literal notranslate"><span class="pre">tip</span></code> por <code class="docutils literal notranslate"><span class="pre">day</span></code> o <code class="docutils literal notranslate"><span class="pre">sex</span></code>).</p></li>
+<li><p>Combinar violin plot con boxplot o swarmplot para mostrar observaciones individuales.</p></li>
+</ul>
+</li>
+<li><p><strong>Plotly (opcional)</strong>:</p>
+<ul class="simple">
+<li><p>Crear al menos un gráfico interactivo (scatter o histograma) con <code class="docutils literal notranslate"><span class="pre">plotly.express</span></code>.</p></li>
+<li><p>Probar a filtrar datos y observar cómo cambia la visualización.</p></li>
+</ul>
+</li>
+<li><p><strong>Informe visual</strong>:</p>
+<ul class="simple">
+<li><p>Preparar un pequeño conjunto de 3–5 gráficos que:</p>
+<ul>
+<li><p>Resuman las distribuciones principales.</p></li>
+<li><p>Muestren una o dos relaciones importantes.</p></li>
+</ul>
+</li>
+<li><p>Guardar los gráficos en formato <code class="docutils literal notranslate"><span class="pre">.png</span></code> o <code class="docutils literal notranslate"><span class="pre">.pdf</span></code> y anotar brevemente (en un notebook o documento) qué cuenta cada gráfico.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="conclusiones-de-la-sesion">
+<h2>Conclusiones de la sesión<a class="headerlink" href="#conclusiones-de-la-sesion" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Las visualizaciones <strong>multivariables</strong> (faceting, PairGrid) permiten entender cómo cambian los patrones según distintos subgrupos.</p></li>
+<li><p>Los <strong>violin plots</strong> y combinaciones avanzadas ayudan a comparar distribuciones con más detalle.</p></li>
+<li><p>Diseñar gráficos pensando en la <strong>comunicación</strong> (títulos, ejes, leyendas) es tan importante como el código que los genera.</p></li>
+<li><p>La visualización <strong>interactiva</strong> con Plotly abre la puerta a exploración más flexible y a dashboards.</p></li>
+<li><p>Saber <strong>exportar gráficos con buena calidad</strong> es clave para integrarlos en informes y presentaciones profesionales.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
